@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+body {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  background-color: #0a0a0a;
+  font-family: "Onest", sans-serif;
+}
+.a {
+  animation: animate 20s linear infinite;
+}
+@keyframes animate {
+  0% {
+    transform: perspective(1000px) rotateY(0deg);
+  }
+  100% {
+    transform: perspective(1000px) rotateY(360deg);
+  }
+}
+/* impossible text style home page */
+.textFont {
+  font-family: "Mazius Display, sans-serif";
+  font-style: italic;
+  text-align: left;
+  color: #e56f40;
+}
+.scrolling-text {
+  white-space: nowrap; /* Prevents the text from wrapping */
+  overflow: hidden; /* Hides the overflow */
+  box-sizing: border-box;
+  width: 100%; /* Adjust the width of the container */
+  animation: scroll-left 20s linear infinite; /* Animation for scrolling */
+}
+
+@keyframes scroll-left {
+  from {
+    transform: translateX(100%); /* Start from the right */
+  }
+  to {
+    transform: translateX(-100%); /* Move to the left */
+  }
+}
+
+.scrolling-text1 {
+  white-space: nowrap; /* Prevents the text from wrapping */
+  box-sizing: border-box;
+  width: 100%; /* Adjust the width of the container */
+  animation: scroll-left1 14s linear infinite alternate; /* Animation for scrolling */
+}
+
+@keyframes scroll-left1 {
+  from {
+    transform: translateX(0%); /* Start from the right */
+  }
+  to {
+    transform: translateX(-30%); /* Move to the left */
+  }
+}
