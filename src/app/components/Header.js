@@ -1,23 +1,43 @@
 "use client";
 import Image from "next/image";
-import sun from "../../../public/sun.svg";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import { useRouter } from "next/navigation";
 
 export const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
+  const [showHeader, setShowHeader] = useState(true); // <-- new state
+  const [lastScrollY, setLastScrollY] = useState(0);
   const router = useRouter();
 
   const handleNavigation = (path) => {
     router.push(path);
-    setShowMenu(false); // Close the menu after navigation
+    setShowMenu(false);
   };
 
+  // <-- new useEffect for scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY > lastScrollY && currentScrollY > 50) {
+        setShowHeader(false); // scrolling down
+      } else {
+        setShowHeader(true); // scrolling up
+      }
+      setLastScrollY(currentScrollY);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
+
   return (
-    <div>
-      <div className="px-4 py-8 lg:px-24 flex justify-between items-center">
+    <div
+      className={`sticky top-0   transition-transform duration-300 ${
+        showMenu ? "z-50" : "z-0"
+      } ${showHeader ? "translate-y-0" : "-translate-y-full"}`}
+    >
+      <div className="px-4 py-8 lg:px-24 flex justify-between items-center bg-[#0a0a0a] z-50">
         <div className="w-8 h-8  ">
           <div
             className="grid gap-2 py-2.5 cursor-pointer"
@@ -41,13 +61,6 @@ export const Header = () => {
             />
           </div>
 
-          {/* <Image
-            src={sun}
-            alt="sun"
-            width={18}
-            height={18}
-            className="object-cover pb-1 group-hover:rotate-90 duration-700 absolute right-1 z-60 max-sm:z-0"
-          /> */}
           <div className="text-[1.35rem]  font-medium leading-[1] absolute group-hover:bottom-0 -bottom-6.5 left-0  duration-700 z-60 max-sm:z-0">
             <Image
               src={"/logoRed.png"}
@@ -60,12 +73,14 @@ export const Header = () => {
         </div>
       </div>
       <div
-        className={`fixed inset-0 bg-black/50 backdrop-blur-xs duration-700 ${
-          showMenu ? "opacity-100 z-50" : "opacity-0 -z-10"
-        }`}
+        className={`fixed inset-0 bg-black/50 backdrop-blur-xs duration-700 top-0 ${
+          showMenu ? "h-[1000px]" : "h-[0px]"
+        } ${showMenu ? "opacity-100 z-50" : "opacity-0 -z-10"}`}
       >
         <div
-          className={`bg-[#222] w-[40%] max-sm:w-[100%] h-full fixed z-70 duration-1000  ${
+          className={`bg-[#222] w-[40%] max-sm:w-[100%] ${
+            showMenu ? "h-[1000px]" : "h-[0px]"
+          } fixed z-70 duration-1000  ${
             showMenu ? "top-0 left-0" : "-top-[660px] -left-[660px]"
           }`}
         >
@@ -87,28 +102,28 @@ export const Header = () => {
                 ></div>
               </div>
             </div>
-            <div className="py-24 grid h-fit gap-8">
+            <div className="lg:py-24 py-12 grid h-fit gap-8">
               <div
                 onClick={() => handleNavigation("/")}
                 className="flex items-end gap-1 border-[#b3b3b3] border-b-1 w-fit"
               >
-                <div className="flex items-center gap-2 group relative overflow-hidden  w-[300px] h-[60px] cursor-pointer">
+                <div className="flex items-center gap-2 group relative overflow-hidden  lg:w-[380px] w-[240px] h-[60px] cursor-pointer">
                   <IoIosArrowRoundForward
                     color="white"
                     className={`-rotate-45 mb-1 absolute bottom-0 group-hover:-bottom-12 duration-700 `}
-                    size={26}
+                    size={32}
                   />
                   <IoIosArrowRoundForward
                     color="white"
                     className={`-rotate-45 mb-1 absolute -bottom-12 group-hover:bottom-0 duration-700 `}
-                    size={26}
+                    size={32}
                   />
-                  <p className="text-5xl text-white font-medium leading-[1] group-hover:-bottom-12 bottom-0 left-6 duration-700 absolute z-60">
-                    HOME
+                  <p className="lg:text-5xl text-3xl text-white font-medium leading-[1] group-hover:-bottom-12 bottom-0 left-6 duration-700 absolute z-60">
+                    НҮҮР ХУУДАС
                   </p>
 
-                  <p className=" text-5xl text-white font-medium leading-[1] absolute group-hover:bottom-0 -bottom-12 left-6  duration-700 z-60">
-                    HOME
+                  <p className=" lg:text-5xl text-3xl text-white font-medium leading-[1] absolute group-hover:bottom-0 -bottom-12 left-6  duration-700 z-60">
+                    НҮҮР ХУУДАС
                   </p>
                 </div>
               </div>
@@ -116,23 +131,23 @@ export const Header = () => {
                 onClick={() => handleNavigation("/about")}
                 className="flex items-end gap-1 border-[#b3b3b3] border-b-1 w-fit"
               >
-                <div className="flex items-center gap-2 group relative overflow-hidden  w-[300px] h-[60px] cursor-pointer">
+                <div className="flex items-center gap-2 group relative overflow-hidden  lg:w-[420px] w-[270px] h-[60px] cursor-pointer">
                   <IoIosArrowRoundForward
                     color="white"
                     className={`-rotate-45 mb-1 absolute bottom-0 group-hover:-bottom-12 duration-700 `}
-                    size={26}
+                    size={32}
                   />
                   <IoIosArrowRoundForward
                     color="white"
                     className={`-rotate-45 mb-1 absolute -bottom-12 group-hover:bottom-0 duration-700 `}
-                    size={26}
+                    size={32}
                   />
-                  <p className="text-5xl text-white font-medium leading-[1] group-hover:-bottom-12 bottom-0 left-6 duration-700 absolute z-60">
-                    ABOUT US
+                  <p className="lg:text-5xl text-3xl text-white font-medium leading-[1] group-hover:-bottom-14 bottom-0 left-6 duration-700 absolute z-60">
+                    БИДНИЙ ТУХАЙ
                   </p>
 
-                  <p className=" text-5xl text-white font-medium leading-[1] absolute group-hover:bottom-0 -bottom-12 left-6  duration-700 z-60">
-                    ABOUT US
+                  <p className=" lg:text-5xl text-3xl text-white font-medium leading-[1] absolute group-hover:bottom-0 -bottom-14 left-6  duration-700 z-60">
+                    БИДНИЙ ТУХАЙ
                   </p>
                 </div>
               </div>
@@ -140,23 +155,23 @@ export const Header = () => {
                 onClick={() => handleNavigation("/services")}
                 className="flex items-end gap-1 border-[#b3b3b3] border-b-1 w-fit"
               >
-                <div className="flex items-center gap-2 group relative overflow-hidden  w-[300px] h-[60px] cursor-pointer">
+                <div className="flex items-center gap-2 group relative overflow-hidden  lg:w-[320px] w-[210px] h-[60px] cursor-pointer">
                   <IoIosArrowRoundForward
                     color="white"
                     className={`-rotate-45 mb-1 absolute bottom-0 group-hover:-bottom-12 duration-700 `}
-                    size={26}
+                    size={32}
                   />
                   <IoIosArrowRoundForward
                     color="white"
                     className={`-rotate-45 mb-1 absolute -bottom-12 group-hover:bottom-0 duration-700 `}
-                    size={26}
+                    size={32}
                   />
-                  <p className="text-5xl text-white font-medium leading-[1] group-hover:-bottom-12 bottom-0 left-6 duration-700 absolute z-60">
-                    SERVICES
+                  <p className="lg:text-5xl text-3xl text-white font-medium leading-[1] group-hover:-bottom-13 bottom-0 left-6 duration-700 absolute z-60">
+                    ҮЙЛЧИЛГЭЭ
                   </p>
 
-                  <p className=" text-5xl text-white font-medium leading-[1] absolute group-hover:bottom-0 -bottom-12 left-6  duration-700 z-60">
-                    SERVICES
+                  <p className=" lg:text-5xl text-3xl text-white font-medium leading-[1] absolute group-hover:bottom-0 -bottom-13 left-6  duration-700 z-60">
+                    ҮЙЛЧИЛГЭЭ
                   </p>
                 </div>
               </div>
@@ -165,23 +180,23 @@ export const Header = () => {
                 onClick={() => handleNavigation("/contact")}
                 className="flex items-end gap-1 border-[#b3b3b3] border-b-1 w-fit"
               >
-                <div className="flex items-center gap-2 group relative overflow-hidden  w-[300px] h-[60px] cursor-pointer">
+                <div className="flex items-center gap-2 group relative overflow-hidden  lg:w-[420px] w-[270px] h-[60px] cursor-pointer">
                   <IoIosArrowRoundForward
                     color="white"
                     className={`-rotate-45 mb-1 absolute bottom-0 group-hover:-bottom-12 duration-700 `}
-                    size={26}
+                    size={32}
                   />
                   <IoIosArrowRoundForward
                     color="white"
                     className={`-rotate-45 mb-1 absolute -bottom-12 group-hover:bottom-0 duration-700 `}
-                    size={26}
+                    size={32}
                   />
-                  <p className="text-5xl text-white font-medium leading-[1] group-hover:-bottom-12 bottom-0 left-6 duration-700 absolute z-60">
-                    CONTACT
+                  <p className="lg:text-5xl text-3xl text-white font-medium leading-[1] group-hover:-bottom-13 bottom-0 left-6 duration-700 absolute z-60">
+                    ХОЛБОО БАРИХ
                   </p>
 
-                  <p className=" text-5xl text-white font-medium leading-[1] absolute group-hover:bottom-0 -bottom-12 left-6  duration-700 z-60">
-                    CONTACT
+                  <p className=" lg:text-5xl text-3xl text-white font-medium leading-[1] absolute group-hover:bottom-0 -bottom-13 left-6  duration-700 z-60">
+                    ХОЛБОО БАРИХ
                   </p>
                 </div>
               </div>
@@ -191,11 +206,11 @@ export const Header = () => {
                   className="flex items-center gap-2 group relative overflow-hidden w-[120px] h-[24px]  cursor-pointer"
                 >
                   <p className="lg:text-sm text-white font-medium leading-[1] group-hover:-bottom-6 bottom-0 left-0 duration-700 absolute z-60">
-                    INSTAGRAM
+                    FACEBOOK
                   </p>
 
                   <p className=" lg:text-sm text-white font-medium leading-[1] absolute group-hover:bottom-0 -bottom-6 left-0  duration-700 z-60">
-                    INSTAGRAM
+                    FACEBOOK
                   </p>
                 </a>
                 <a
@@ -203,11 +218,11 @@ export const Header = () => {
                   className="flex items-center gap-2 group relative overflow-hidden w-[120px] h-[24px]  cursor-pointer"
                 >
                   <p className="lg:text-sm text-white font-medium leading-[1] group-hover:-bottom-6 bottom-0 left-0 duration-700 absolute z-60">
-                    FACEBOOK
+                    INSTAGRAM
                   </p>
 
                   <p className=" lg:text-sm text-white font-medium leading-[1] absolute group-hover:bottom-0 -bottom-6 left-0  duration-700 z-60">
-                    FACEBOOK
+                    INSTAGRAM
                   </p>
                 </a>
               </div>

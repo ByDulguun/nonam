@@ -2,7 +2,7 @@ import React from "react";
 
 const Page = () => {
   return (
-    <div className="h-fit">
+    <div className="h-fit z-40">
       <div className="grid h-fit gap-5">
         <div className="flex gap-1 justify-center pt-24">
           <p className="text-white text-5xl lg:text-8xl ">GET IN </p>
@@ -42,7 +42,7 @@ const Page = () => {
           </p>
           <a
             href="https://maps.app.goo.gl/XAtYmaNTTGvTUX5z5"
-            className="text-white underline"
+            className="text-white underline underline-offset-1 cursor-pointer"
           >
             View on maps
           </a>

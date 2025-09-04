@@ -20,12 +20,12 @@ export const HomePage = () => {
   }, []);
   return (
     <div className=" h-[100%] overflow-x-hidden lg:overflow-hidden grid  gap-20 lg:flex lg:flex-row-reverse ">
-      <div className=" h-[80%]">
+      <div className=" h-fit lg:mt-10 mt-0">
         <div
-          className="relative w-[250px] h-[250px] lg:h-[500px] lg:w-[500px] a rotate-16   left-52 -top-12 lg:-left-10 lg:-top-20"
+          className="relative w-[250px] h-[250px] lg:h-[500px] lg:w-[500px] a rotate-16   left-52 -top-12 lg:-left-10 lg:-top-20  "
           style={{ transformStyle: "preserve-3d" }}
         >
-          {isClient && windowWidth > 768 ? (
+          {isClient && windowWidth > 1025 ? (
             <>
               {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
                 <span
@@ -44,9 +44,9 @@ export const HomePage = () => {
                     src={`/home/image${i}.png`}
                     width={250}
                     height={250}
-                    className="lg:w-[400px] lg:h-[400px]"
+                    className="lg:w-[400px] lg:h-[400px] object-contain"
                     alt={`Image ${i}`}
-                    quality={90}
+                    quality={100}
                   />
                 </span>
               ))}
@@ -70,9 +70,9 @@ export const HomePage = () => {
                     src={`/home/image${i}.png`}
                     width={250}
                     height={250}
-                    className="lg:w-[400px] lg:h-[400px]"
+                    className="lg:w-[400px] lg:h-[400px] object-contain"
                     alt={`Image${i}`}
-                    quality={90}
+                    quality={100}
                   />
                 </span>
               ))}
@@ -104,14 +104,21 @@ export const HomePage = () => {
             </div>
             <p className="text-white text-4xl lg:text-6xl">IS HOTTER</p>
           </div>
+          <Image
+            src={"/logoWhite.png"}
+            alt="sun"
+            width={270}
+            height={20}
+            className="object-cover "
+          />
           <h1 className="text-[#ed2939] w-[100%] lg:w-[400px] font-bold">
             MARKETING AGENCY SINCE 2018
           </h1>
-          <p className="text-[#b3b3b3]">
+          {/* <p className="text-[#b3b3b3]">
             Social Media Marketing,Content Marketing, Social Platform
             Development, <br /> Consumer Behavior and Emotional Marketing,
             ATL/AboveTheLine/ plan, <br /> Training and Coaching, Consulting
-          </p>
+          </p> */}
           <div
             className="flex items-end gap-1  border-[#b3b3b3] border-b-1 w-fit"
             onClick={() => router.push("/contact")}

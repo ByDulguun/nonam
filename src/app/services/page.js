@@ -8,34 +8,57 @@ const services = [
     id: 1,
     image: "/image1.webp",
     description:
-      "We provide services to grow and develop Facebook, Instagram, TikTok, and LinkedIn platforms",
-    title: "Social Media Platform Developing",
+      "Таны бизнест тохирох Facebook, Instagram, TikTok, LinkedIn зэрэг гол платформууд дээр оновчтой хөгжүүлэлт хийнэ.",
+    title: "СОШИАЛ МЕДИА ПЛАТФОРМ ХӨГЖҮҮЛЭЛТ",
+    list: [
+      "Платформ тус бүрт тохирсон бүтээлч ажил төлөвлөх, зохиох",
+      "Дизайн, видео, рийл, анимейшн зэрэг дүрслэлтэй контент бүтээх",
+      "Тогтмол постлох төлөвлөгөө гарган, хуудас идэвхжүүлэх",
+      "Олон улсад хэрэглэгдэж буй арга техникийн дагуу бүүст хийнэ",
+    ],
   },
   {
     id: 2,
     image: "/image2.webp",
     description:
-      "We provide strategies and services to promote products and services directly to end consumers, driving awareness, engagement, and sales.",
-    title: "Consumer Marketing",
+      "Бид таны брэндийг хэрэглэгчдэд танилцуулахад шаардлагатай бүх төрлийн хэвлэл, эх бэлтгэл, дизайн, дотоод тохижилт, in-store marketing шийдлүүдийг нэг цэгээс цогцоор нь үзүүлнэ. POSM материал, лангууны дизайн, постер, баннер зэрэг сурталчилгааны хэрэгслийг мэргэжлийн өндөр түвшинд бүтээж, таны борлуулалт, брэндийн нэр хүндийг өсгөнө.",
+    title: "POSM ҮЙЛЧИЛГЭЭ, IN-STORE MARKETING",
   },
   {
     id: 3,
     image: "/image3.webp",
     description:
-      "We focus on mass media channels to build brand awareness and reach a wide audience through TV, radio, print, outdoor advertising, cinema ads, and large-scale campaigns.",
-    title: "ATL (Above the line)",
+      "Олон нийтэд чиглэсэн, өргөн хүрээтэй сурталчилгааны сувгуудыг ашиглан брэндийн танигдсан байдлыг нэмэгдүүлэх урт болон богино хугацаат кампанит ажил хийнэ.",
+    title: "ATL (ABOVE THE LINE ) MARKETING",
+    list: [
+      "Телевизийн сурталчилгаа – Рекламны санаа зохиол дээр ажиллана, студитэй хамтарч ажиллана.",
+      "Радио сурталчилгаа – Текст, эх бичвэрийг санаа зохиол дээр ажиллана, захиалга өгнө, хянана.",
+      "Сонин, сэтгүүлд сурталчилгаа – Брэндийнг мэдээ, мессеж түгээх нийтлэл бичнэ, захиалга өгнө, хянана.",
+      ,
+      "OOH (Out Of Home) – Billboard, LED дэлгэц, барилгын эх бэлтгэл, хэвлэлт, тогтоолт.",
+      ,
+      "Кино театрын зар сурталчилгаа – Кино үзэж буй үзэгчдэд чиглэсэн сурталчилгаа",
+      "Брендинг материалууд – Сав баглаа боодол, бүтээгдэхүүний шошго, каталог, хэвлэмэл материалууд",
+    ],
   },
   {
     id: 4,
     image: "/image4.webp",
     description:
-      "We provide marketing coaching and consulting services to help businesses develop on social media platform, and achieve sustainable growth.",
-    title: "Coaching and Consulting",
+      " Олон нийтэд чиглэсэн, өргөн хүрээтэй сурталчилгааны сувгуудыг ашиглан брэндийн танигдсан байдлыг нэмэгдүүлэх урт болон богино хугацаат кампанит ажил хийнэ.",
+    title: "СУРГАЛТ, ЗӨВЛӨГӨӨ",
+    list: [
+      "Байгууллага болон хувиараа бизнес эрхлэгчид брэндийнхээ сошиал орчныг системтэй удирдах мэдлэгтэй болно",
+      "Контент бүтээх, зар сурталчилгаа удирдах чадвар эзэмшинэ",
+      "Өөрийн брэндийг зорилтот хэрэглэгчиддээ илүү үр дүнтэй хүргэх чадвартай болно",
+      "Facebook, Instagram, TikTok, LinkedIn зар сурталчилгааны бүтцийн талаарх ойлголт",
+      "FOMO болон сэтгэлзүйн нөлөөллийг ашиглах арга техникт суралцана.",
+    ],
   },
 ];
 
 const Page = () => {
-  const [openId, setOpenId] = useState();
+  const [openId, setOpenId] = useState(null);
 
   const toggle = (id) => {
     setOpenId(openId === id ? null : id);
@@ -43,6 +66,7 @@ const Page = () => {
 
   return (
     <div>
+      {/* Title */}
       <div className="py-24 grid gap-4">
         <div className="grid gap-1 justify-center ">
           <div className="flex gap-2">
@@ -53,18 +77,21 @@ const Page = () => {
         </div>
       </div>
 
-      <div className="py-24 lg:px-60 relative ">
+      {/* Dropdown List */}
+      <div className="py-24 lg:px-60 relative">
         {services.map((service) => (
           <div
             onClick={() => toggle(service.id)}
             key={service.id}
-            className={` relative grid group border-gray-100 border-b-1 py-20 mx-6 overflow-hidden  cursor-pointer ${
-              openId === service.id ? "h-[260px]" : "h-[100px]"
+            className={`relative grid group border-gray-100 border-b py-8 mx-6 overflow-hidden cursor-pointer transition-all ${
+              openId === service.id ? "max-h-[760px]" : "max-h-[100px]"
             } duration-700`}
           >
             <div className="flex justify-between items-center">
               <p className="text-[#b2b2b2] font-semibold">0{service.id}</p>
-              <p className="text-white text-xl text-center ">{service.title}</p>
+              <p className="text-white lg:text-xl text-sm text-center">
+                {service.title}
+              </p>
               <IoIosArrowRoundForward
                 size={26}
                 color="#b2b2b2"
@@ -74,8 +101,15 @@ const Page = () => {
               />
             </div>
             {openId === service.id && (
-              <div className="text-[#b2b2b2] px-8 py-6">
-                {service.description}
+              <div className="text-[#b2b2b2] px-8 py-16 h-fit space-y-4">
+                <p>{service.description}</p>
+                {service.list && (
+                  <ul className="list-disc pl-5 space-y-2">
+                    {service.list.map((item, idx) => (
+                      <li key={idx}>{item}</li>
+                    ))}
+                  </ul>
+                )}
               </div>
             )}
           </div>

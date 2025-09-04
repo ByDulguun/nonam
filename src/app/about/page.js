@@ -6,10 +6,19 @@ import CountUp from "react-countup";
 
 const Page = () => {
   const router = useRouter();
+
+  const teamMembers = Array.from({ length: 9 }).map((_, index) => ({
+    id: index + 1,
+    src: `/about/image${index + 1}.png`,
+    alt: `Team member ${index + 1}`,
+  }));
+
+  const marqueeMembers = [...teamMembers, ...teamMembers, ...teamMembers];
+
   return (
     <div className="pb-24 w-full overflow-x-hidden">
       <div className="grid gap-6">
-        <div className="grid gap-1 text-center pt-32 lg:pt-4 ">
+        <div className="grid gap-1 text-center pt-14 lg:pt-4 ">
           <div className="lg:flex m-auto gap-2">
             <p className="text-white text-5xl lg:text-8xl ">OUR </p>
             <p className="text-white text-5xl lg:text-8xl ">TEAM</p>
@@ -21,27 +30,32 @@ const Page = () => {
           </div>
         </div>
       </div>
-      <div className="w-[100vw] lg:overflow-x-hidden   overflow-x-hidden my-24 flex justify-center">
-        <div className="lg:flex  gap-20 py-10 lg:scrolling-text1 scrolling-text1 lg:mx-0 mx-24 lg:gap-6 grid h-fit ">
-          {Array.from({ length: 9 }).map((_, index) => (
-            <Image
-              key={index}
-              src={`/about/image${index + 1}.png`}
-              className={`${
+
+      <div className="w-full overflow-x-hidden my-20 flex justify-center">
+        <div className="flex gap-6 animate-marquee1 ">
+          {marqueeMembers.map((member, index) => (
+            <div
+              key={`${member.id}-${index}`}
+              className={`flex-shrink-0 w-[250px] h-[300px] lg:w-[300px] lg:h-[400px] ${
                 index % 2 === 0 ? "lg:skew-y-12" : "lg:-skew-y-12"
               }`}
-              width={300}
-              height={400}
-              quality={100}
-              alt={index}
-            />
+            >
+              <Image
+                src={member.src}
+                className="w-full h-full object-contain"
+                width={300}
+                height={400}
+                quality={100}
+                alt={member.alt}
+              />
+            </div>
           ))}
         </div>
       </div>
 
-      <div className="flex gap-4 items-start justify-center lg:justify-around pb-24">
+      <div className="flex gap-4 items-start  justify-center  lg:justify-around pb-12">
         <div className="grid gap-3">
-          <div className="flex gap-2 items-center">
+          <div className="flex gap-2 items-center  justify-center">
             <p className="text-[#b2b2b2] text-xl lg:text-9xl">+</p>
             <CountUp
               end={15}
@@ -57,7 +71,7 @@ const Page = () => {
         </div>
 
         <div className="grid gap-3">
-          <div className="flex gap-2 items-center">
+          <div className="flex gap-2 items-center  justify-center">
             <p className="text-[#b2b2b2] text-xl lg:text-9xl">+</p>
             <CountUp
               end={70}
@@ -73,7 +87,7 @@ const Page = () => {
         </div>
 
         <div className="grid gap-3">
-          <div className="flex gap-2 items-center">
+          <div className="flex gap-2 items-center justify-center">
             <p className="text-[#b2b2b2] text-xl lg:text-9xl">+</p>
             <CountUp
               end={7}
@@ -83,7 +97,7 @@ const Page = () => {
               className="text-white font-medium text-4xl lg:text-9xl"
             />
           </div>
-          <p className="text-[#b2b2b2] text-sm max-w-[100px] lg:max-w-[300px] lg:text-xl">
+          <p className="text-[#b2b2b2] text-sm max-w-[100px] text-center lg:max-w-[300px] lg:text-xl">
             Years of Agency Experience
           </p>
         </div>
@@ -99,52 +113,52 @@ const Page = () => {
       </div>
       <div className="py-8 grid gap-1 lg:flex relative px-4  lg:px-24 items-center">
         <div className="bg-[#222] grid h-fit gap-1 p-10 lg:flex-1  ">
-          <div className=" w-10 h-10 textFont text-2xl">01</div>
-          <p className="text-white w-40 font-medium text-xl">
+          <div className=" w-10 h-10 textFont text-4xl">01</div>
+          <p className="text-white  w-full font-medium text-2xl  ">
             FB, Instagram гэх мэт платформ хөгжүүлэх хугацаа?
           </p>
-          <p className="text-[#b2b2b2] w-40 text-[12px]">
+          <p className="text-[#b2b2b2]  text-md w-full  ">
             Хагас жил болон түүнээс дээш хугацаагаар хамтран ажиллах гэрээ
             хийдэг. Энэ нь брэндийн танигдах байдлын хэмжих боломжит хугацаа юм.
           </p>
         </div>
         <div className="bg-[#222] grid h-fit gap-1 p-10 lg:flex-1">
-          <div className=" w-10 h-10 textFont text-2xl">02</div>
-          <p className="text-white w-40 font-medium text-xl">
+          <div className=" w-10 h-10 textFont text-4xl">02</div>
+          <p className="text-white w-full font-medium text-2xl">
             Бүүстийн зардал орсон уу?
           </p>
-          <p className="text-[#b2b2b2] w-40 text-[12px]">
+          <p className="text-[#b2b2b2] w-full text-md">
             Захиалагч тус бүрийн жилийн төсвөөс хамаардаг ажил тул, бүүстийн
             зардал багтаагүй болно.
           </p>
         </div>
         <div className="bg-[#222] grid h-fit gap-1 p-10 lg:flex-1">
-          <div className=" w-10 h-10 textFont text-2xl">03</div>
-          <p className="text-white w-40 font-medium text-xl">
+          <div className=" w-10 h-10 textFont text-4xl">03</div>
+          <p className="text-white w-full font-medium text-2xl">
             Олны танил, инфлүэнсэрүүдтэй хамтарч ажилладаг уу?
           </p>
-          <p className="text-[#b2b2b2] w-40 text-[12px]">
+          <p className="text-[#b2b2b2] w-full text-md">
             Тийм, хамтран ажиллах үнийн дүнг нь Захиалагч тал хариуцна. Бид
             ажлын хариуцлагад нь хяналт хийн, удирдаж ажиллана.
           </p>
         </div>
         <div className="bg-[#222] grid h-fit gap-1 p-10 lg:flex-1">
-          <div className=" w-10 h-10 textFont text-2xl">04</div>
-          <p className="text-white w-40 font-medium text-xl">
+          <div className=" w-10 h-10 textFont text-4xl">04</div>
+          <p className="text-white w-full font-medium text-2xl">
             ROMI хэрхэн тооцох вэ?
           </p>
-          <p className="text-[#b2b2b2] w-40 text-[12px]">
+          <p className="text-[#b2b2b2] w-full text-md">
             Манай агентлаг нь борлуулалтын чиглэлээр үйл ажиллагаа явуулдаггүй
             тул ROMI тооцдоггүй. Гэхдээ шаардлагатай тохиолдолд тооцох ажил дээр
             хамтран ажиллах боломжтой.
           </p>
         </div>
         <div className="bg-[#222] grid h-fit gap-1 p-10 lg:flex-1">
-          <div className=" w-10 h-10 textFont text-2xl">05</div>
-          <p className="text-white w-40 font-medium text-xl">
+          <div className=" w-10 h-10 textFont text-4xl">05</div>
+          <p className="text-white w-full font-medium text-2xl">
             Лангууны тохижилт хийдэг үү?
           </p>
-          <p className="text-[#b2b2b2] w-40 text-[12px]">
+          <p className="text-[#b2b2b2] w-full text-md">
             Хийнэ. Бид Таванбогд, МСД, Алтан жолоо, MCS гэх мэт олон компанитай
             хамтран ажилласан туршлагатай.
           </p>

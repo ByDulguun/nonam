@@ -7,10 +7,15 @@ import { useRouter } from "next/navigation";
 export const Footer = () => {
   const date = new Date().getFullYear();
   const router = useRouter();
+
+  const handleSocialClick = (url) => {
+    window.open(url, "_blank", "noopener,noreferrer");
+  };
+
   return (
     <>
       {/* Mobile & Tablet View */}
-      <div className="h-fit p-4 lg:hidden md:block sm:block">
+      <div className="h-fit p-4 lg:hidden">
         <div className="grid gap-3">
           <div className="flex items-center gap-2">
             <Image
@@ -34,7 +39,7 @@ export const Footer = () => {
             ].map((item, index) => (
               <p
                 key={index}
-                className="text-white text-[12px] cursor-pointer"
+                className="text-white text-[12px] cursor-pointer hover:text-gray-300 transition-colors"
                 onClick={() => router.push(item.path)}
               >
                 {item.name}
@@ -44,25 +49,28 @@ export const Footer = () => {
           <div className="grid gap-4 h-fit">
             <p className="text-[#b2b2b2]">SOCIAL:</p>
             {[
-              { name: "FACEBOOK", url: "https://www.facebook.com/yourpage" },
-              { name: "INSTAGRAM", url: "https://www.instagram.com/yourpage" },
+              {
+                name: "FACEBOOK",
+                url: "https://www.facebook.com/greativityagency",
+              },
+              {
+                name: "INSTAGRAM",
+                url: "https://www.instagram.com/eatit_agency",
+              },
             ].map((social, index) => (
-              <a
+              <p
                 key={index}
-                href={social.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white text-[12px] cursor-pointer"
+                className="text-white text-[12px] cursor-pointer hover:text-gray-300 transition-colors"
+                onClick={() => handleSocialClick(social.url)}
               >
                 {social.name}
-              </a>
+              </p>
             ))}
           </div>
         </div>
         <p className="text-[#b2b2b2] py-6 text-center">{date} Copyright</p>
       </div>
 
-      {/* Desktop View */}
       <div className="hidden lg:block">
         <div className="flex justify-around py-12">
           <div className="grid gap-3 h-fit">
@@ -88,7 +96,7 @@ export const Footer = () => {
               ].map((item, index) => (
                 <p
                   key={index}
-                  className="text-white text-[12px] cursor-pointer"
+                  className="text-white text-[12px] cursor-pointer hover:text-gray-300 transition-colors"
                   onClick={() => router.push(item.path)}
                 >
                   {item.name}
@@ -112,7 +120,7 @@ export const Footer = () => {
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white text-[12px] cursor-pointer hover:underline"
+                  className="text-white text-[12px] cursor-pointer hover:underline hover:text-gray-300 transition-colors"
                 >
                   {social.name}
                 </a>
@@ -120,37 +128,7 @@ export const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="p-12 flex justify-center">
-          {/* <div className="grid gap-4">
-            <p className="text-[#b2b2b2]">
-              POWERED BY <span className="text-white">WEBFLOW</span>
-            </p>
-            <p className="text-[#b2b2b2]">
-              Markething© – created by{" "}
-              <span className="text-white">flowaze</span>
-            </p>
-          </div> */}
-          <div
-            className="border border-[#b2b2b2] w-[60px] h-[60px] rounded-full flex justify-center items-center cursor-pointer"
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          >
-            <IoIosArrowRoundForward
-              color="white"
-              className="-rotate-90"
-              size={26}
-            />
-          </div>
-          {/* <div className="flex gap-5 items-center">
-            {["STYLE GUIDE", "LICENSES", "CHANGELOG"].map((item, index) => (
-              <p
-                key={index}
-                className="text-[#b2b2b2] text-[12px] cursor-pointer"
-              >
-                {item}
-              </p>
-            ))}
-          </div> */}
-        </div>
+        <div className="p-12 flex justify-center"></div>
       </div>
     </>
   );

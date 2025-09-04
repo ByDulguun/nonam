@@ -2,12 +2,9 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { IoIosArrowRoundForward } from "react-icons/io";
 
 export const Stories = () => {
   const firstRef = useRef();
-  const [showCircle, setShowCircle] = useState(false);
-  const router = useRouter();
 
   useEffect(() => {
     const handleMouseMove = (event) => {
@@ -30,7 +27,6 @@ export const Stories = () => {
     };
   }, []);
   const secondRef = useRef();
-  const [showCircleSecond, setShowCircleSecond] = useState(false);
 
   useEffect(() => {
     const handleMouseMove = (event) => {
@@ -53,7 +49,6 @@ export const Stories = () => {
     };
   }, []);
   const thirthRef = useRef();
-  const [showCircleThirth, setShowCircleThirth] = useState(false);
 
   useEffect(() => {
     const handleMouseMove = (event) => {
@@ -76,7 +71,6 @@ export const Stories = () => {
     };
   }, []);
   const fourthRef = useRef();
-  const [showCircleFourth, setShowCircleFourth] = useState(false);
 
   useEffect(() => {
     const handleMouseMove = (event) => {
@@ -108,23 +102,23 @@ export const Stories = () => {
       </div>
       <div className="py-12 relative">
         <div className="relative">
-          <div className="sticky bottom-0 z-40 flex cursor-pointer lg:max-h-[600px] h-fit w-full bg-[#0a0a0a] ">
-            <div className="lg:flex grid w-full justify-center ">
+          {/* First section: Image-Video */}
+          <div className="sticky bottom-0 z-40 flex cursor-pointer lg:max-h-[600px] h-fit w-full bg-[#0a0a0a]">
+            <div className="lg:flex grid w-full justify-center">
               <div>
                 <Image
                   src="/stories/asiana.png"
                   width={400}
                   height={340}
                   alt="hi"
-                  className="w-fit h-full lg:h-full object-cover"
+                  className="lg:w-fit w-full h-full lg:h-full object-cover"
                   quality={100}
                 />
               </div>
               <div>
                 <video
                   src="/stories/asiana.mp4"
-                  controls
-                  className="w-fit h-full object-contain"
+                  className="w-fit h-full object-cover"
                   autoPlay={true}
                   muted
                   loop
@@ -133,24 +127,70 @@ export const Stories = () => {
               </div>
               <div>
                 <Image
-                  src="/stories/asiana.png"
+                  src="/stories/asianaleft.png"
                   width={400}
                   height={340}
                   alt="hi"
-                  className="w-fit h-full lg:h-full object-cover"
+                  className="lg:w-fit w-full h-full lg:h-full object-cover lg:block hidden"
                   quality={100}
                 />
               </div>
             </div>
           </div>
 
-          <div className="sticky cursor-pointer lg:bottom-0 -bottom-120 z-30 lg:max-h-[600px]  flex bg-[#0a0a0a] ">
-            <div className=" lg:flex lg:flex-row flex flex-col-reverse  justify-center ">
+          {/* Second section: Video-Image */}
+          <div className="sticky cursor-pointer lg:bottom-0 -bottom-120 z-30 lg:max-h-[600px] h-fit flex bg-[#0a0a0a]">
+            <div className="lg:flex grid w-full justify-center">
+              <div>
+                <Image
+                  src="/stories/bsbleft.png"
+                  width={400}
+                  height={340}
+                  alt="hi"
+                  className="lg:w-fit w-full h-full lg:h-full object-cover"
+                  quality={100}
+                />
+              </div>
+              <div>
+                <video
+                  src="/stories/bsb.mp4"
+                  className="w-fit h-full object-cover"
+                  autoPlay={true}
+                  muted
+                  loop
+                  playsInline
+                />
+              </div>
+              <div>
+                <Image
+                  src="/stories/bsbright.png"
+                  width={400}
+                  height={340}
+                  alt="hi"
+                  className="lg:w-fit w-full h-full lg:h-full object-cover lg:block hidden"
+                  quality={100}
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Third section: Image-Video */}
+          <div className="sticky cursor-pointer lg:bottom-0 -bottom-120 z-20 lg:max-h-[600px] h-fit flex bg-[#0a0a0a]">
+            <div className="lg:flex grid w-full justify-center">
+              <div>
+                <Image
+                  src="/stories/badrakhleft.png"
+                  width={400}
+                  height={340}
+                  alt="hi"
+                  className="lg:w-fit w-full h-full lg:h-full object-cover"
+                  quality={100}
+                />
+              </div>
               <div>
                 <video
                   src="/stories/badrah.mp4"
-                  controls
-                  className="w-fit h-full object-contain"
+                  className="w-fit h-full object-cover"
                   autoPlay={true}
                   muted
                   loop
@@ -159,91 +199,86 @@ export const Stories = () => {
               </div>
               <div>
                 <Image
-                  src="/stories/badrah.png"
+                  src="/stories/badrakhright.png"
                   width={400}
                   height={340}
                   alt="hi"
-                  className="w-fit h-full lg:h-full object-cover"
+                  className="lg:w-fit w-full h-full lg:h-full object-cover lg:block hidden"
                   quality={100}
                 />
               </div>
             </div>
           </div>
-        </div>
 
-        <div className="sticky cursor-pointer  lg:bottom-0 -bottom-120  z-20 lg:max-h-[600px] h-fit flex bg-[#0a0a0a]">
-          <div className="lg:flex grid  justify-center">
-            <div>
-              <Image
-                src="/stories/bsb.png"
-                width={400}
-                height={340}
-                alt="hi"
-                className="w-fit h-full lg:h-full object-cover"
-                quality={100}
-              />
-            </div>
-            <div>
-              <video
-                src="/stories/bsb.mp4"
-                controls
-                className="w-fit h-full object-contain"
-                autoPlay={true}
-                muted
-                loop
-                playsInline
-              />
+          {/* Fourth section: Video-Image */}
+          <div className="sticky cursor-pointer lg:bottom-0 -bottom-120 z-10 lg:max-h-[600px] flex bg-[#0a0a0a]">
+            <div className="lg:flex grid w-full justify-center">
+              <div>
+                <Image
+                  src="/stories/bolorleft.jpg"
+                  width={400}
+                  height={340}
+                  alt="hi"
+                  className="lg:w-fit w-full h-full lg:h-full object-cover"
+                  quality={100}
+                />
+              </div>
+              <div>
+                <video
+                  src="/stories/bsb2.mp4"
+                  className="w-fit h-full object-cover"
+                  autoPlay={true}
+                  muted
+                  loop
+                  playsInline
+                />
+              </div>
+              <div>
+                <Image
+                  src="/stories/rightbsb.png"
+                  width={400}
+                  height={340}
+                  alt="hi"
+                  className="lg:w-fit w-full h-full lg:h-full object-cover lg:block hidden"
+                  quality={100}
+                />
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className="sticky cursor-pointer  lg:bottom-0 -bottom-120  z-10 lg:max-h-[600px] h-fit flex bg-[#0a0a0a]">
-          <div className="lg:flex lg:flex-row flex flex-col-reverse  justify-center">
-            <div>
-              <video
-                src="/stories/bsb2.mp4"
-                controls
-                className="w-fit h-full object-contain"
-                autoPlay={true}
-                muted
-                loop
-                playsInline
-              />
-            </div>
-            <div>
-              <Image
-                src="/stories/bsb2.png"
-                width={400}
-                height={340}
-                alt="hi"
-                className="w-fit h-full lg:h-full object-cover"
-                quality={100}
-              />
-            </div>
-          </div>
-        </div>
-        <div className="sticky cursor-pointer  lg:bottom-0 -bottom-120  z-0 lg:max-h-[600px] h-fit flex bg-[#0a0a0a]">
-          <div className="lg:flex grid  justify-center">
-            <div>
-              <Image
-                src="/stories/higold.png"
-                width={400}
-                height={340}
-                alt="hi"
-                className="w-fit h-full lg:h-full object-cover"
-                quality={100}
-              />
-            </div>
-            <div>
-              <video
-                src="/stories/higold.mp4"
-                controls
-                className="w-fit h-full object-contain"
-                autoPlay={true}
-                muted
-                loop
-                playsInline
-              />
+          {/* Fifth section: Image-Video */}
+          <div className="sticky cursor-pointer lg:bottom-0 -bottom-120 z-0 lg:max-h-[600px] h-fit flex bg-[#0a0a0a]">
+            <div className="lg:flex grid w-full justify-center">
+              <div>
+                <Image
+                  src="/stories/higoldleft.png"
+                  width={400}
+                  height={340}
+                  alt="hi"
+                  className="lg:w-fit w-full h-full lg:h-full object-cover"
+                  quality={100}
+                />
+              </div>
+              <div>
+                <video
+                  src="/stories/higold.mp4"
+                  className="w-fit h-full object-cover"
+                  autoPlay={true}
+                  muted
+                  loop
+                  playsInline
+                />
+              </div>
+              <div>
+                <Image
+                  src="/stories/higoldright.png"
+                  width={400}
+                  height={340}
+                  alt="hi"
+                  className="lg:w-fit w-full h-full lg:h-full object-cover lg:block hidden"
+                  quality={100}
+                />
+              </div>
             </div>
           </div>
         </div>
