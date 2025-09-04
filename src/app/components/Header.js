@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import sun from "../../../public/sun.svg";
+
 import { useState } from "react";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import { useRouter } from "next/navigation";
@@ -28,21 +29,34 @@ export const Header = () => {
         </div>
         <div
           onClick={() => router.push("/")}
-          className="flex items-center gap-2 group relative overflow-hidden w-[170px] h-[24px] cursor-pointer"
+          className="flex items-center gap-2 group relative overflow-hidden w-[170px] h-[26px] cursor-pointer"
         >
-          <p className="text-[1.35rem] text-white font-medium leading-[1] group-hover:-bottom-6 bottom-0 left-0 duration-700 absolute z-60 max-sm:z-0">
-            MARKETHING
-          </p>
-          <Image
+          <div className="text-[1.35rem]  font-medium leading-[1] group-hover:-bottom-6.5 bottom-0 left-0 duration-700 absolute z-60 max-sm:z-0">
+            <Image
+              src={"/logoWhite.png"}
+              alt="sun"
+              width={140}
+              height={20}
+              className="object-cover "
+            />
+          </div>
+
+          {/* <Image
             src={sun}
             alt="sun"
             width={18}
             height={18}
             className="object-cover pb-1 group-hover:rotate-90 duration-700 absolute right-1 z-60 max-sm:z-0"
-          />
-          <p className="text-[1.35rem] text-[#e56f40] font-medium leading-[1] absolute group-hover:bottom-0 -bottom-6 left-0  duration-700 z-60 max-sm:z-0">
-            MARKETHING
-          </p>
+          /> */}
+          <div className="text-[1.35rem]  font-medium leading-[1] absolute group-hover:bottom-0 -bottom-6.5 left-0  duration-700 z-60 max-sm:z-0">
+            <Image
+              src={"/logoRed.png"}
+              alt="sun"
+              width={140}
+              height={20}
+              className="object-cover "
+            />
+          </div>
         </div>
       </div>
       <div
@@ -114,11 +128,11 @@ export const Header = () => {
                     size={26}
                   />
                   <p className="text-5xl text-white font-medium leading-[1] group-hover:-bottom-12 bottom-0 left-6 duration-700 absolute z-60">
-                    ABOUT
+                    ABOUT US
                   </p>
 
                   <p className=" text-5xl text-white font-medium leading-[1] absolute group-hover:bottom-0 -bottom-12 left-6  duration-700 z-60">
-                    ABOUT
+                    ABOUT US
                   </p>
                 </div>
               </div>
@@ -146,30 +160,7 @@ export const Header = () => {
                   </p>
                 </div>
               </div>
-              <div
-                onClick={() => handleNavigation("/cases")}
-                className="flex items-end gap-1 border-[#b3b3b3] border-b-1 w-fit"
-              >
-                <div className="flex items-center gap-2 group relative overflow-hidden  w-[300px] h-[60px] cursor-pointer">
-                  <IoIosArrowRoundForward
-                    color="white"
-                    className={`-rotate-45 mb-1 absolute bottom-0 group-hover:-bottom-12 duration-700 `}
-                    size={26}
-                  />
-                  <IoIosArrowRoundForward
-                    color="white"
-                    className={`-rotate-45 mb-1 absolute -bottom-12 group-hover:bottom-0 duration-700 `}
-                    size={26}
-                  />
-                  <p className="text-5xl text-white font-medium leading-[1] group-hover:-bottom-12 bottom-0 left-6 duration-700 absolute z-60">
-                    CASES
-                  </p>
 
-                  <p className=" text-5xl text-white font-medium leading-[1] absolute group-hover:bottom-0 -bottom-12 left-6  duration-700 z-60">
-                    CASES
-                  </p>
-                </div>
-              </div>
               <div
                 onClick={() => handleNavigation("/contact")}
                 className="flex items-end gap-1 border-[#b3b3b3] border-b-1 w-fit"
@@ -195,16 +186,10 @@ export const Header = () => {
                 </div>
               </div>
               <div className="flex">
-                <div className="flex items-center gap-2 group relative overflow-hidden w-[120px] h-[24px]  cursor-pointer">
-                  <p className="lg:text-sm text-white font-medium leading-[1] group-hover:-bottom-6 bottom-0 left-0 duration-700 absolute z-60">
-                    TWITER - X
-                  </p>
-
-                  <p className=" lg:text-sm text-white font-medium leading-[1] absolute group-hover:bottom-0 -bottom-6 left-0  duration-700 z-60">
-                    TWITER - X
-                  </p>
-                </div>
-                <div className="flex items-center gap-2 group relative overflow-hidden w-[120px] h-[24px]  cursor-pointer">
+                <a
+                  href="https://www.facebook.com/greativityagency"
+                  className="flex items-center gap-2 group relative overflow-hidden w-[120px] h-[24px]  cursor-pointer"
+                >
                   <p className="lg:text-sm text-white font-medium leading-[1] group-hover:-bottom-6 bottom-0 left-0 duration-700 absolute z-60">
                     INSTAGRAM
                   </p>
@@ -212,16 +197,19 @@ export const Header = () => {
                   <p className=" lg:text-sm text-white font-medium leading-[1] absolute group-hover:bottom-0 -bottom-6 left-0  duration-700 z-60">
                     INSTAGRAM
                   </p>
-                </div>
-                <div className="flex items-center gap-2 group relative overflow-hidden w-[120px] h-[24px]  cursor-pointer">
+                </a>
+                <a
+                  href="https://www.instagram.com/eatit_agency"
+                  className="flex items-center gap-2 group relative overflow-hidden w-[120px] h-[24px]  cursor-pointer"
+                >
                   <p className="lg:text-sm text-white font-medium leading-[1] group-hover:-bottom-6 bottom-0 left-0 duration-700 absolute z-60">
-                    LINKEDIN
+                    FACEBOOK
                   </p>
 
                   <p className=" lg:text-sm text-white font-medium leading-[1] absolute group-hover:bottom-0 -bottom-6 left-0  duration-700 z-60">
-                    LINKEDIN
+                    FACEBOOK
                   </p>
-                </div>
+                </a>
               </div>
             </div>
           </div>

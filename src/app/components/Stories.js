@@ -102,198 +102,137 @@ export const Stories = () => {
     <div className="h-fit ">
       <div className="grid gap-6 px-4 lg:px-24 lg:pt-24">
         <div className="flex gap-1 lg:grid">
-          <p className="text-white text-4xl lg:text-6xl">SUCCESS </p>
-          <p className="text-white text-4xl lg:text-6xl textFont">Stories</p>
-        </div>
-        <div className="lg:flex lg:justify-end lg:w-full">
-          <div
-            onClick={() => router.push("/cases")}
-            className="flex items-end gap-1  border-[#b3b3b3] border-b-1 w-fit"
-          >
-            <div className="flex items-center gap-2 group relative overflow-hidden  w-[166px] h-[30px] cursor-pointer">
-              <IoIosArrowRoundForward
-                color="white"
-                className={`-rotate-45 absolute bottom-0 group-hover:-bottom-12 duration-700  left-0 group-hover:-left-12 text-xl`}
-              />
-              <IoIosArrowRoundForward
-                color="white"
-                className={`-rotate-45 absolute -bottom-12 group-hover:bottom-0 duration-700 -left-12 group-hover:left-0 text-xl `}
-              />
-              <p className="text-sm text-white font-medium leading-[1] group-hover:-bottom-12 bottom-1 left-6 duration-700 absolute z-40">
-                BROWSE ALL
-              </p>
-              <p className="text-sm text-white font-medium leading-[1] group-hover:-top-12 top-3 right-0 duration-700 absolute z-40">
-                CASES
-              </p>
-
-              <p className=" text-sm text-white font-medium leading-[1] absolute group-hover:bottom-1 -bottom-12 left-6  duration-700 z-40">
-                BROWSE ALL
-              </p>
-              <p className=" text-sm text-white font-medium leading-[1] absolute group-hover:top-3 -top-12 right-0  duration-700 z-40">
-                CASES
-              </p>
-            </div>
-          </div>
+          <p className="text-white text-4xl lg:text-6xl">VISUALS</p>
+          {/* <p className="text-white text-4xl lg:text-6xl textFont"></p> */}
         </div>
       </div>
       <div className="py-12 relative">
         <div className="relative">
-          <div
-            className="sticky cursor-pointer bottom-0 z-40 "
-            onClick={() => router.push("cases/first")}
-            onMouseEnter={() => setShowCircle(true)}
-            onMouseLeave={() => setShowCircle(false)}
-          >
-            <Image
-              src="/image3.webp"
-              width={400}
-              height={340}
-              alt="hi"
-              className="lg:w-full lg:h-[731px] object-cover h-[340px] w-[400px]"
-              quality={100}
-            />
-            <div className="absolute grid gap-3 top-32 lg:top-72 lg:left-24 left-12">
-              <p className="text-white lg:text-3xl lg:font-light">01</p>
-              <p className="text-white lg:text-7xl font-medium text-4xl">
-                TONE
-              </p>
-              <p className="text-white lg:text-xl">Social Media Management</p>
-            </div>
-            <div
-              ref={firstRef}
-              className={`w-20 h-20 max-sm:hidden max-lg:visible  rounded-full absolute top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 `}
-            >
-              <div
-                className={`${
-                  showCircle
-                    ? " opacity-100 scale-100 duration-700"
-                    : "opacity-0 scale-50  duration-700"
-                } w-20 h-20 max-sm:hidden max-lg:visible bg-[#e56f40] rounded-full flex justify-center items-center`}
-              >
-                <IoIosArrowRoundForward
-                  color="black"
-                  className="-rotate-45"
-                  size={20}
+          <div className="sticky bottom-0 z-40 flex cursor-pointer lg:max-h-[600px] h-fit w-full bg-[#0a0a0a] ">
+            <div className="lg:flex grid w-full justify-center ">
+              <div>
+                <Image
+                  src="/stories/asiana.png"
+                  width={400}
+                  height={340}
+                  alt="hi"
+                  className="w-fit h-full lg:h-full object-cover"
+                  quality={100}
+                />
+              </div>
+              <div>
+                <video
+                  src="/stories/asiana.mp4"
+                  controls
+                  className="w-fit h-full object-contain"
+                  autoPlay={true}
+                  muted
+                  loop
+                  playsInline
                 />
               </div>
             </div>
           </div>
 
-          <div
-            className="sticky cursor-pointer bottom-0 z-30 "
-            onClick={() => router.push("cases/second")}
-            onMouseEnter={() => setShowCircleSecond(true)}
-            onMouseLeave={() => setShowCircleSecond(false)}
-          >
-            <Image
-              src="/image10.webp"
-              width={400}
-              height={340}
-              alt="hi"
-              className="lg:w-full lg:h-[731px] object-cover h-[340px] w-[400px]"
-              quality={100}
-            />
-            <div className="absolute grid gap-3 top-32 lg:top-72 lg:left-24 left-12">
-              <p className="text-white lg:text-3xl lg:font-light ">02</p>
-              <p className="text-white lg:text-7xl font-medium text-4xl">
-                YAMATO
-              </p>
-              <p className="text-white lg:text-xl">Social Media Management</p>
-            </div>
-            <div
-              ref={secondRef}
-              className={`w-20 h-20 max-sm:hidden max-lg:visible  rounded-full absolute top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 `}
-            >
-              <div
-                className={`${
-                  showCircleSecond
-                    ? " opacity-100 scale-100 duration-700"
-                    : "opacity-0 scale-50  duration-700"
-                } w-20 h-20 max-sm:hidden max-lg:visible bg-[#e56f40] rounded-full flex justify-center items-center`}
-              >
-                <IoIosArrowRoundForward
-                  color="black"
-                  className="-rotate-45"
-                  size={20}
+          <div className="sticky cursor-pointer lg:bottom-0 -bottom-120 z-30 lg:max-h-[600px]  flex bg-[#0a0a0a] ">
+            <div className=" lg:flex lg:flex-row flex flex-col-reverse  justify-center ">
+              <div>
+                <video
+                  src="/stories/badrah.mp4"
+                  controls
+                  className="w-fit h-full object-contain"
+                  autoPlay={true}
+                  muted
+                  loop
+                  playsInline
+                />
+              </div>
+              <div>
+                <Image
+                  src="/stories/badrah.png"
+                  width={400}
+                  height={340}
+                  alt="hi"
+                  className="w-fit h-full lg:h-full object-cover"
+                  quality={100}
                 />
               </div>
             </div>
           </div>
         </div>
 
-        <div
-          className="sticky cursor-pointer bottom-0 z-20 "
-          onClick={() => router.push("cases/thirth")}
-          onMouseEnter={() => setShowCircleThirth(true)}
-          onMouseLeave={() => setShowCircleThirth(false)}
-        >
-          <Image
-            src="/image11.webp"
-            width={400}
-            height={340}
-            alt="hi"
-            className="lg:w-full lg:h-[731px] object-cover h-[340px] w-[400px]"
-            quality={100}
-          />
-          <div className="absolute grid gap-3 top-32 lg:top-72 lg:left-24 left-12">
-            <p className="text-white lg:text-3xl lg:font-light">03</p>
-            <p className="text-white lg:text-7xl font-medium text-4xl">MUSE</p>
-            <p className="text-white lg:text-xl">Social Media Management</p>
-          </div>
-          <div
-            ref={thirthRef}
-            className={`w-20 h-20 max-sm:hidden max-lg:visible  rounded-full absolute top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 `}
-          >
-            <div
-              className={`${
-                showCircleThirth
-                  ? " opacity-100 scale-100 duration-700"
-                  : "opacity-0 scale-50  duration-700"
-              } w-20 h-20 max-sm:hidden max-lg:visible bg-[#e56f40] rounded-full flex justify-center items-center`}
-            >
-              <IoIosArrowRoundForward
-                color="black"
-                className="-rotate-45"
-                size={20}
+        <div className="sticky cursor-pointer  lg:bottom-0 -bottom-120  z-20 lg:max-h-[600px] h-fit flex bg-[#0a0a0a]">
+          <div className="lg:flex grid  justify-center">
+            <div>
+              <Image
+                src="/stories/bsb.png"
+                width={400}
+                height={340}
+                alt="hi"
+                className="w-fit h-full lg:h-full object-cover"
+                quality={100}
+              />
+            </div>
+            <div>
+              <video
+                src="/stories/bsb.mp4"
+                controls
+                className="w-fit h-full object-contain"
+                autoPlay={true}
+                muted
+                loop
+                playsInline
               />
             </div>
           </div>
         </div>
 
-        <div
-          className="sticky cursor-pointer bottom-0 z-10"
-          onClick={() => router.push("cases/fourth")}
-          onMouseEnter={() => setShowCircleFourth(true)}
-          onMouseLeave={() => setShowCircleFourth(false)}
-        >
-          <Image
-            src="/image6.webp"
-            width={400}
-            height={340}
-            alt="hi"
-            className="lg:w-full lg:h-[731px] object-cover h-[340px] w-[400px]"
-            quality={100}
-          />
-          <div className="absolute grid gap-3 top-32 lg:top-72 lg:left-24 left-12">
-            <p className="text-white lg:text-3xl lg:font-light">04</p>
-            <p className="text-white lg:text-7xl font-medium text-4xl">SPEED</p>
-            <p className="text-white lg:text-xl">Social Media Management</p>
+        <div className="sticky cursor-pointer  lg:bottom-0 -bottom-120  z-10 lg:max-h-[600px] h-fit flex bg-[#0a0a0a]">
+          <div className="lg:flex lg:flex-row flex flex-col-reverse  justify-center">
+            <div>
+              <video
+                src="/stories/bsb2.mp4"
+                controls
+                className="w-fit h-full object-contain"
+                autoPlay={true}
+                muted
+                loop
+                playsInline
+              />
+            </div>
+            <div>
+              <Image
+                src="/stories/bsb2.png"
+                width={400}
+                height={340}
+                alt="hi"
+                className="w-fit h-full lg:h-full object-cover"
+                quality={100}
+              />
+            </div>
           </div>
-          <div
-            ref={fourthRef}
-            className={`w-20 h-20 max-sm:hidden max-lg:visible  rounded-full absolute top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 `}
-          >
-            <div
-              className={`${
-                showCircleFourth
-                  ? " opacity-100 scale-100 duration-700"
-                  : "opacity-0 scale-50  duration-700"
-              } w-20 h-20 max-sm:hidden max-lg:visible bg-[#e56f40] rounded-full flex justify-center items-center`}
-            >
-              <IoIosArrowRoundForward
-                color="black"
-                className="-rotate-45"
-                size={20}
+        </div>
+        <div className="sticky cursor-pointer  lg:bottom-0 -bottom-120  z-0 lg:max-h-[600px] h-fit flex bg-[#0a0a0a]">
+          <div className="lg:flex grid  justify-center">
+            <div>
+              <Image
+                src="/stories/higold.png"
+                width={400}
+                height={340}
+                alt="hi"
+                className="w-fit h-full lg:h-full object-cover"
+                quality={100}
+              />
+            </div>
+            <div>
+              <video
+                src="/stories/higold.mp4"
+                controls
+                className="w-fit h-full object-contain"
+                autoPlay={true}
+                muted
+                loop
+                playsInline
               />
             </div>
           </div>

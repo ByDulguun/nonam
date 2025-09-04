@@ -14,27 +14,23 @@ export const Footer = () => {
       <div className="h-fit p-4 lg:hidden md:block sm:block">
         <div className="grid gap-3">
           <div className="flex items-center gap-2">
-            <p className="text-white font-medium text-4xl">MARKETHING</p>
-            <div className="w-8 h-8 text-white flex justify-center">
-              <Image
-                src={sun}
-                alt="sun"
-                width={32}
-                height={32}
-                className="object-cover"
-              />
-            </div>
+            <Image
+              src={"/logoWhite.png"}
+              alt="sun"
+              width={140}
+              height={20}
+              className="object-cover "
+            />
           </div>
-          <p className="text-[#b2b2b2]">Make It Impossible To Ignore</p>
+          <p className="text-[#b2b2b2]">Create. Not just ads. Impact.</p>
         </div>
         <div className="grid grid-cols-2 gap-12 py-12">
           <div className="grid gap-4">
             <p className="text-[#b2b2b2]">PAGES:</p>
             {[
               { name: "HOME", path: "/" },
-              { name: "ABOUT", path: "/about" },
+              { name: "ABOUT US", path: "/about" },
               { name: "SERVICES", path: "/services" },
-              { name: "CASE STUDIES", path: "/cases" },
               { name: "CONTACT", path: "/contact" },
             ].map((item, index) => (
               <p
@@ -46,18 +42,22 @@ export const Footer = () => {
               </p>
             ))}
           </div>
-          <div className="grid gap-4">
+          <div className="grid gap-4 h-fit">
             <p className="text-[#b2b2b2]">SOCIAL:</p>
-            {["TWITTER", "BEHANCE", "DRIBBLE", "LINKEDIN", "INSTAGRAM"].map(
-              (social, index) => (
-                <p
-                  key={index}
-                  className="text-white text-[12px] cursor-pointer"
-                >
-                  {social}
-                </p>
-              )
-            )}
+            {[
+              { name: "FACEBOOK", url: "https://www.facebook.com/yourpage" },
+              { name: "INSTAGRAM", url: "https://www.instagram.com/yourpage" },
+            ].map((social, index) => (
+              <a
+                key={index}
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white text-[12px] cursor-pointer"
+              >
+                {social.name}
+              </a>
+            ))}
           </div>
         </div>
         <p className="text-[#b2b2b2] py-6 text-center">{date} Copyright</p>
@@ -68,25 +68,23 @@ export const Footer = () => {
         <div className="flex justify-around py-12">
           <div className="grid gap-3 h-fit">
             <div className="flex items-center gap-2">
-              <p className="text-white font-medium text-4xl">MARKETHING</p>
               <Image
-                src={sun}
+                src={"/logoWhite.png"}
                 alt="sun"
-                width={32}
-                height={32}
-                className="object-cover"
+                width={140}
+                height={20}
+                className="object-cover "
               />
             </div>
-            <p className="text-[#b2b2b2]">Make It Impossible To Ignore</p>
+            <p className="text-[#b2b2b2]">Create. Not just ads. Impact.</p>
           </div>
           <div className="flex gap-32">
             <div className="grid gap-4">
               <p className="text-[#b2b2b2]">PAGES:</p>
               {[
                 { name: "HOME", path: "/" },
-                { name: "ABOUT", path: "/about" },
+                { name: "ABOUT US", path: "/about" },
                 { name: "SERVICES", path: "/services" },
-                { name: "CASE STUDIES", path: "/cases" },
                 { name: "CONTACT", path: "/contact" },
               ].map((item, index) => (
                 <p
@@ -98,23 +96,33 @@ export const Footer = () => {
                 </p>
               ))}
             </div>
-            <div className="grid gap-4">
+            <div className="grid gap-4 h-fit">
               <p className="text-[#b2b2b2]">SOCIAL:</p>
-              {["TWITTER", "BEHANCE", "DRIBBLE", "LINKEDIN", "INSTAGRAM"].map(
-                (social, index) => (
-                  <p
-                    key={index}
-                    className="text-white text-[12px] cursor-pointer"
-                  >
-                    {social}
-                  </p>
-                )
-              )}
+              {[
+                {
+                  name: "FACEBOOK",
+                  url: "https://www.facebook.com/greativityagency",
+                },
+                {
+                  name: "INSTAGRAM",
+                  url: "https://www.instagram.com/eatit_agency",
+                },
+              ].map((social, index) => (
+                <a
+                  key={index}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white text-[12px] cursor-pointer hover:underline"
+                >
+                  {social.name}
+                </a>
+              ))}
             </div>
           </div>
         </div>
-        <div className="p-12 flex justify-between">
-          <div className="grid gap-4">
+        <div className="p-12 flex justify-center">
+          {/* <div className="grid gap-4">
             <p className="text-[#b2b2b2]">
               POWERED BY <span className="text-white">WEBFLOW</span>
             </p>
@@ -122,7 +130,7 @@ export const Footer = () => {
               Markething© – created by{" "}
               <span className="text-white">flowaze</span>
             </p>
-          </div>
+          </div> */}
           <div
             className="border border-[#b2b2b2] w-[60px] h-[60px] rounded-full flex justify-center items-center cursor-pointer"
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
@@ -133,7 +141,7 @@ export const Footer = () => {
               size={26}
             />
           </div>
-          <div className="flex gap-5 items-center">
+          {/* <div className="flex gap-5 items-center">
             {["STYLE GUIDE", "LICENSES", "CHANGELOG"].map((item, index) => (
               <p
                 key={index}
@@ -142,7 +150,7 @@ export const Footer = () => {
                 {item}
               </p>
             ))}
-          </div>
+          </div> */}
         </div>
       </div>
     </>

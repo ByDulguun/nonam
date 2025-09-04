@@ -8,36 +8,44 @@ const Page = () => {
           <p className="text-white text-5xl lg:text-8xl ">GET IN </p>
           <p className="text-white text-5xl lg:text-8xl  textFont">Touch</p>
         </div>
-        <p className="m-auto text-center w-[300px] lg:w-[600px] text-[#b2b2b2]">
+        {/* <p className="m-auto text-center w-[300px] lg:w-[600px] text-[#b2b2b2]">
           Ready to elevate your brand? Contact us today to discuss your
           marketing needs. Our team is here to answer your questions and provide
           you with the solutions you need to succeed.
-        </p>
+        </p> */}
       </div>
       <div className="px-6 py-12 h-fit grid gap-18 lg:justify-center lg:pt-24">
         <div className=" gap-2 grid h-fit">
           <p className="text-[#b2b2b2]">Email:</p>
-          <p className="text-white">HELLO@MARKETHING.COM</p>
+          <a
+            href="https://mail.google.com/mail/u/0/?to=onon@greativity.mn&su=SUBJECT&body=BODY&fs=1&tf=cm"
+            className="text-white underline-offset-1 underline"
+          >
+            onon@greativity.mn
+          </a>
         </div>
-        <div className=" gap-2 grid h-fit">
+        <div className="gap-2 grid h-fit">
           <p className="text-[#b2b2b2]">Phone:</p>
-          <p className="text-white">976:80940383</p>
+          <a
+            href="tel:+97699006205"
+            className="text-white underline underline-offset-1"
+          >
+            +976-99006205
+          </a>
         </div>
+
         <div className=" gap-2 grid h-fit">
           <p className="text-[#b2b2b2]">Adress:</p>
-          <p className="text-[#b2b2b2]">8301 compton ave</p>
-          <p className="text-[#b2b2b2]">Los angles - california</p>
-          <p className="text-white">View on maps</p>
-        </div>
-        <p className="text-[#b2b2b2]">Subcribe to our newsletter</p>
-        <div className="grid gap-2">
-          <input
-            placeholder="Your Email"
-            className="p-4 outline-none border-[#b2b2b1] border-b-1 w-[100%] text-[#b2b2b2] "
-          />
-          <button className="text-white p-2 border border-gray-500 w-fit my-6">
-            SUBSCRIBE
-          </button>
+          <p className="text-[#b2b2b2]">UB PLUS Office</p>
+          <p className="text-[#b2b2b2]">
+            #608 6th floor Manlaibaatar street Ulaanbaatar Mongolia
+          </p>
+          <a
+            href="https://maps.app.goo.gl/XAtYmaNTTGvTUX5z5"
+            className="text-white underline"
+          >
+            View on maps
+          </a>
         </div>
       </div>
     </div>

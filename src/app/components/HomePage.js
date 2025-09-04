@@ -23,7 +23,7 @@ export const HomePage = () => {
       <div className=" h-[80%]">
         <div
           className="relative w-[250px] h-[250px] lg:h-[500px] lg:w-[500px] a rotate-16   left-52 -top-12 lg:-left-10 lg:-top-20"
-          style={{ transformStyle: "preserve-3d" }} // ergeldej baigaa 3d zurag
+          style={{ transformStyle: "preserve-3d" }}
         >
           {isClient && windowWidth > 768 ? (
             <>
@@ -41,7 +41,7 @@ export const HomePage = () => {
                   }}
                 >
                   <Image
-                    src={`/image${i}.webp`}
+                    src={`/home/image${i}.png`}
                     width={250}
                     height={250}
                     className="lg:w-[400px] lg:h-[400px]"
@@ -67,7 +67,7 @@ export const HomePage = () => {
                   }}
                 >
                   <Image
-                    src={`/image${i}.webp`}
+                    src={`/home/image${i}.png`}
                     width={250}
                     height={250}
                     className="lg:w-[400px] lg:h-[400px]"
@@ -84,7 +84,7 @@ export const HomePage = () => {
         <div className="px-4 grid gap-4 h-fit  overflow-hidden pt-48 lg:pt-12  lg:w-[100%] lg:px-24">
           <div className="grid">
             <RotatingText
-              texts={["CREATE INPACT", "GO BEYOND", "STAND OUT"]} //rotate hiij baigaa text oorchloh
+              texts={["CREATE", "NOT JUST ADS", "IMPACT"]} //rotate hiij baigaa text oorchloh
               mainClassName=" text-[#b3b3b3] overflow-hidden w-fit h-fit" //style ungu solih
               staggerFrom={"last"}
               initial={{ y: "100%" }}
@@ -97,19 +97,20 @@ export const HomePage = () => {
             />
           </div>
           <div>
-            <p className="text-white text-4xl lg:text-8xl ">MAKE IT </p>
-            <div className="flex">
-              <p className="text-white text-4xl lg:text-8xl textFont">
-                Impossible
-              </p>
-
-              <p className="text-white text-4xl lg:text-8xl">TO</p>
+            <p className="text-white text-4xl lg:text-6xl ">IDEAS ARE </p>
+            <div className="flex gap-1">
+              <p className="text-white text-4xl lg:text-6xl textFont">hot</p>
+              <p className="text-white text-4xl lg:text-6xl">EXECUTION</p>
             </div>
-            <p className="text-white text-4xl lg:text-8xl">IGNORE</p>
+            <p className="text-white text-4xl lg:text-6xl">IS HOTTER</p>
           </div>
-          <p className="text-[#b3b3b3] w-[100%] lg:w-[400px] ">
-            Discover how Markething transforms your marketing strategies into
-            powerful campaigns that captivate audiences and drive results.
+          <h1 className="text-[#ed2939] w-[100%] lg:w-[400px] font-bold">
+            MARKETING AGENCY SINCE 2018
+          </h1>
+          <p className="text-[#b3b3b3]">
+            Social Media Marketing,Content Marketing, Social Platform
+            Development, <br /> Consumer Behavior and Emotional Marketing,
+            ATL/AboveTheLine/ plan, <br /> Training and Coaching, Consulting
           </p>
           <div
             className="flex items-end gap-1  border-[#b3b3b3] border-b-1 w-fit"
@@ -138,13 +139,6 @@ export const HomePage = () => {
                 TOUCH
               </p>
             </div>
-          </div>
-          <div className="scrolling-text text-white py-32  lg:hidden flex gap-20 max-md:hidden max">
-            <p className="text-[#b2b2b2]">sweden</p>
-            <p className="text-[#b2b2b2]">umbrella</p>
-            <p className="text-[#b2b2b2]">Delaware</p>
-            <p className="text-[#b2b2b2]">Monaco</p>
-            <p className="text-[#b2b2b2]">Springfeild</p>
           </div>
         </div>
       </div>

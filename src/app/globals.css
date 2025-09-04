@@ -32,7 +32,7 @@ body {
   font-family: "Mazius Display, sans-serif";
   font-style: italic;
   text-align: left;
-  color: #e56f40;
+  color: #ed2939;
 }
 .scrolling-text {
   white-space: nowrap; /* Prevents the text from wrapping */
@@ -64,5 +64,23 @@ body {
   }
   to {
     transform: translateX(-30%); /* Move to the left */
+  }
+}
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: inline-flex;
+  animation: marquee 60s linear infinite;
+}
+@media (max-width: 1023px) {
+  .scrolling-text1 {
+    animation: none;
   }
 }
