@@ -21,8 +21,8 @@ const Page = () => {
           </div>
         </div>
       </div>
-      <div className="w-[100vw] lg:overflow-hidden h-fit lg:h-[500px] my-24 flex justify-center">
-        <div className="lg:flex  gap-20 py-4 lg:scrolling-text1 scrolling-text1 lg:mx-0 mx-24 lg:gap-20 grid h-fit ">
+      <div className="w-[100vw] lg:overflow-x-hidden   overflow-x-hidden my-24 flex justify-center">
+        <div className="lg:flex  gap-20 py-10 lg:scrolling-text1 scrolling-text1 lg:mx-0 mx-24 lg:gap-6 grid h-fit ">
           {Array.from({ length: 9 }).map((_, index) => (
             <Image
               key={index}
@@ -40,12 +40,14 @@ const Page = () => {
       </div>
 
       <div className="flex gap-4 items-start justify-center lg:justify-around pb-24">
-        <div className="grid gap-3 ">
+        <div className="grid gap-3">
           <div className="flex gap-2 items-center">
             <p className="text-[#b2b2b2] text-xl lg:text-9xl">+</p>
             <CountUp
               end={15}
               duration={4}
+              enableScrollSpy
+              scrollSpyOnce
               className="text-white font-medium text-4xl lg:text-9xl"
             />
           </div>
@@ -54,12 +56,14 @@ const Page = () => {
           </p>
         </div>
 
-        <div className="grid gap-3 ">
+        <div className="grid gap-3">
           <div className="flex gap-2 items-center">
             <p className="text-[#b2b2b2] text-xl lg:text-9xl">+</p>
             <CountUp
               end={70}
               duration={4}
+              enableScrollSpy
+              scrollSpyOnce
               className="text-white font-medium text-4xl lg:text-9xl"
             />
           </div>
@@ -68,12 +72,14 @@ const Page = () => {
           </p>
         </div>
 
-        <div className="grid gap-3 ">
+        <div className="grid gap-3">
           <div className="flex gap-2 items-center">
             <p className="text-[#b2b2b2] text-xl lg:text-9xl">+</p>
             <CountUp
               end={7}
               duration={4}
+              enableScrollSpy
+              scrollSpyOnce
               className="text-white font-medium text-4xl lg:text-9xl"
             />
           </div>

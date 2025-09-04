@@ -9,7 +9,6 @@ export default function Home() {
       <HomePage />
       <Solutions />
       <Stories />
-      {/* <Brand /> */}
     </>
   );
 }

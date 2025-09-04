@@ -131,6 +131,16 @@ export const Stories = () => {
                   playsInline
                 />
               </div>
+              <div>
+                <Image
+                  src="/stories/asiana.png"
+                  width={400}
+                  height={340}
+                  alt="hi"
+                  className="w-fit h-full lg:h-full object-cover"
+                  quality={100}
+                />
+              </div>
             </div>
           </div>
 
