@@ -98,6 +98,14 @@ export const Solutions = () => {
 
   const marqueeImages = [...images, ...images];
 
+  // Preload images for faster showing
+  useEffect(() => {
+    images.forEach((img) => {
+      const image = document.createElement("img");
+      image.src = img.src;
+    });
+  }, []);
+
   // IntersectionObserver to start animation when in view
   useEffect(() => {
     const container = document.querySelector("#marquee-container");
@@ -208,7 +216,7 @@ export const Solutions = () => {
                 height={350}
                 className="w-full h-full object-contain"
                 quality={100}
-                loading="lazy"
+                priority={i < 4}
               />
             </a>
           ))}

@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useEffect } from "react";
 import CountUp from "react-countup";
 
 const Page = () => {
@@ -59,6 +58,13 @@ const Page = () => {
     ...mockTeamMembers,
   ];
 
+  useEffect(() => {
+    mockTeamMembers.forEach((member) => {
+      const image = document.createElement("img");
+      image.src = member.src;
+    });
+  }, []);
+
   return (
     <div className="pb-24 w-full overflow-x-hidden">
       <div className="grid gap-6">
@@ -91,6 +97,7 @@ const Page = () => {
                 height={400}
                 quality={100}
                 alt={member.alt}
+                priority={index < 6}
               />
             </div>
           ))}

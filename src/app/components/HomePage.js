@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 export const HomePage = () => {
   const [isClient, setIsClient] = useState(false);
   const [windowWidth, setWindowWidth] = useState(0);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
   const router = useRouter();
   const mockImages = [
     {
@@ -59,6 +60,46 @@ export const HomePage = () => {
 
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+  useEffect(() => {
+    setIsClient(true);
+    setWindowWidth(window.innerWidth);
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+
+    // Preload images
+    const preloadImages = async () => {
+      const imagePromises = mockImages.map((img) => {
+        return new Promise((resolve, reject) => {
+          const image = document.createElement("img");
+          image.onload = resolve;
+          image.onerror = reject;
+          image.src = img.src;
+        });
+      });
+
+      try {
+        await Promise.all(imagePromises);
+        setImagesLoaded(true);
+      } catch (error) {
+        console.error("Error loading images:", error);
+        setImagesLoaded(true); // Still show the component even if some images fail
+      }
+    };
+
+    preloadImages();
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const handleImageError = (e) => {
+    console.error("Image failed to load:", e.target.src);
+    // Optionally set a fallback image
+    e.target.src = "/fallback-image.png"; // Make sure to have a fallback image
+  };
+
+  const handleImageLoad = (e) => {
+    console.log("Image loaded successfully:", e.target.src);
+  };
   return (
     <div className=" h-[100%] overflow-x-hidden lg:overflow-hidden grid  gap-20 lg:flex lg:flex-row-reverse ">
       <div className=" h-fit lg:mt-10 mt-0">
@@ -70,7 +111,7 @@ export const HomePage = () => {
             <>
               {mockImages.map((item, i) => (
                 <span
-                  key={i}
+                  key={item.id}
                   style={{
                     position: "absolute",
                     transform: `rotateY(calc(var(--i) * 45deg)) translateY(200px) translateX(200px)`,
@@ -87,8 +128,13 @@ export const HomePage = () => {
                     height={250}
                     className="lg:w-[400px] lg:h-[400px] object-contain"
                     alt={`Image ${i}`}
-                    quality={100}
-                    priority={true}
+                    quality={75}
+                    priority={i < 3}
+                    onError={handleImageError}
+                    onLoad={handleImageLoad}
+                    sizes={windowWidth > 1025 ? "400px" : "250px"}
+                    placeholder="blur"
+                    blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyLCJd1Z90/jX86leGvFNB1lWxvLKS70+9t7y4N1EJLiF3BCOT7VhEuHbk+h8BHzXanNt1WbQZqYaFV/9k="
                   />
                 </span>
               ))}
@@ -97,7 +143,7 @@ export const HomePage = () => {
             <>
               {mockImages.map((item, i) => (
                 <span
-                  key={i}
+                  key={item.id}
                   style={{
                     position: "absolute",
                     transform: `rotateY(calc(var(--i) * 45deg)) translateY(220px) translateX(126px)`,
@@ -114,8 +160,13 @@ export const HomePage = () => {
                     height={250}
                     className="lg:w-[400px] lg:h-[400px] object-contain"
                     alt={`Image${i}`}
-                    quality={100}
-                    priority={true}
+                    quality={75}
+                    priority={i < 3}
+                    onError={handleImageError}
+                    onLoad={handleImageLoad}
+                    sizes={windowWidth > 1025 ? "400px" : "250px"}
+                    placeholder="blur"
+                    blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyLCJd1Z90/jX86leGvFNB1lWxvLKS70+9t7y4N1EJLiF3BCOT7VhEuHbk+h8BHzXanNt1WbQZqYaFV/9k="
                   />
                 </span>
               ))}

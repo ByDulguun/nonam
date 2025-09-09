@@ -13,7 +13,7 @@ export const Onon = () => {
           </p>
         </div>
       </div>
-      <div className="relative h-screen w-screen ">
+      <div className="relative lg:h-screen lg:w-screen w-screen h-[200px] ">
         <Image
           src="https://res.cloudinary.com/dyg5xx89p/image/upload/v1757400404/ononegch_1_kanvw2.png"
           alt="Onon Visual"

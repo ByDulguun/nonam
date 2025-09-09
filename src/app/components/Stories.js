@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import { useEffect } from "react";
 
 export const Stories = () => {
   const stories = [
@@ -41,6 +42,19 @@ export const Stories = () => {
     },
   ];
 
+  // Preload images for faster showing
+  useEffect(() => {
+    stories.forEach((story) => {
+      // Preload left image
+      const leftImg = document.createElement("img");
+      leftImg.src = story.left;
+1
+      // Preload right image
+      const rightImg = document.createElement("img");
+      rightImg.src = story.right;
+    });
+  }, []);
+
   return (
     <div className="h-fit px-4 lg:px-24 py-12 bg-[#0a0a0a]">
       <h2 className="text-white text-4xl lg:text-6xl mb-12">VISUALS</h2>
@@ -60,6 +74,7 @@ export const Stories = () => {
                 alt="left"
                 className="w-full h-full object-cover rounded-lg"
                 quality={100}
+                priority={idx < 2}
               />
             </div>
 
@@ -72,6 +87,7 @@ export const Stories = () => {
                 muted
                 loop
                 playsInline
+                preload="metadata"
               />
             </div>
 
@@ -84,6 +100,7 @@ export const Stories = () => {
                 alt="right"
                 className="w-full h-full object-cover rounded-lg"
                 quality={100}
+                priority={idx < 2}
               />
             </div>
           </section>
