@@ -37,7 +37,7 @@ export const Header = () => {
         showMenu ? "z-50" : "z-0"
       } ${showHeader ? "translate-y-0" : "-translate-y-full"}`}
     >
-      <div className="px-4 py-8 lg:px-24 flex justify-between items-center bg-[#0a0a0a] z-50">
+      <div className="px-4 py-8 lg:px-24 flex justify-between items-center bg-[#222] z-50">
         <div className="w-8 h-8  ">
           <div
             className="grid gap-2 py-2.5 cursor-pointer"
@@ -73,7 +73,7 @@ export const Header = () => {
         </div>
       </div>
       <div
-        className={`fixed inset-0 bg-black/50 backdrop-blur-xs duration-700 top-0 ${
+        className={`fixed inset-0 bg-[#222] backdrop-blur-xs duration-700 top-0 ${
           showMenu ? "h-[1000px]" : "h-[0px]"
         } ${showMenu ? "opacity-100 z-50" : "opacity-0 -z-10"}`}
       >

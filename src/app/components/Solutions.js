@@ -1,9 +1,12 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 
 export const Solutions = () => {
-  const [animate, setAnimate] = useState(true);
+  const containerRef = useRef(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
 
   const images = [
     {
@@ -63,15 +66,15 @@ export const Solutions = () => {
       link: "https://www.facebook.com/NaturaMongolia",
     },
     {
-      src: "/solutions/image 15.png",
+      src: "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757387225/image_15_hm7nds.png",
       link: "https://www.facebook.com/GSAccountLLC/",
     },
     {
-      src: "/solutions/image 16.png",
+      src: "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757387225/image_16_mi0bwa.png",
       link: "https://www.facebook.com/asimonbrokers",
     },
     {
-      src: "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757387225/image_15_hm7nds.png",
+      src: "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757387220/image_17_xdfvup.png",
       link: "https://www.facebook.com/Unisteel.mn",
     },
     {
@@ -96,111 +99,74 @@ export const Solutions = () => {
     },
   ];
 
-  const marqueeImages = [...images, ...images];
+  const marqueeImages = [...images, ...images, ...images]; // duplicate for seamless scroll
 
-  // Preload images for faster showing
+  // Preload images
   useEffect(() => {
     images.forEach((img) => {
-      const image = document.createElement("img");
+      const image = new window.Image();
       image.src = img.src;
     });
   }, []);
 
-  // IntersectionObserver to start animation when in view
+  // Auto-scroll
   useEffect(() => {
-    const container = document.querySelector("#marquee-container");
-    if (!container) return;
+    if (!containerRef.current) return;
+    let frameId;
+    const scrollSpeed = window.innerWidth < 768 ? 1 : 0.5;
+    const originalWidth = containerRef.current.scrollWidth / 3;
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (animate) return; // animation already stopped by drag
-        setAnimate(entry.isIntersecting && entry.intersectionRatio > 0.5);
-      },
-      { threshold: 0.5 }
-    );
+    const step = () => {
+      if (!isDragging && containerRef.current) {
+        containerRef.current.scrollLeft += scrollSpeed;
 
-    observer.observe(container);
-
-    return () => {
-      observer.disconnect();
-    };
-  }, [animate]);
-
-  // Mouse drag & touch scroll
-  useEffect(() => {
-    const container = document.getElementById("marquee-container");
-    if (!container) return;
-
-    let isDown = false;
-    let startX;
-    let scrollLeft;
-
-    const startDrag = (e) => {
-      isDown = true;
-      const pageX = "touches" in e ? e.touches[0].pageX : e.pageX;
-      startX = pageX - container.offsetLeft;
-      scrollLeft = container.scrollLeft;
-      container.classList.add("cursor-grabbing");
-
-      setAnimate(false);
+        if (containerRef.current.scrollLeft >= originalWidth) {
+          containerRef.current.scrollLeft = 0;
+        }
+      }
+      frameId = requestAnimationFrame(step);
     };
 
-    const endDrag = () => {
-      if (!isDown) return;
-      isDown = false;
-      container.classList.remove("cursor-grabbing");
+    frameId = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(frameId);
+  }, [isDragging]);
 
-      setAnimate(true);
-    };
+  const handlePointerDown = (e) => {
+    setIsDragging(true);
+    setStartX(e.clientX);
+    if (containerRef.current) setScrollLeft(containerRef.current.scrollLeft);
+  };
 
-    const drag = (e) => {
-      if (!isDown) return;
-      e.preventDefault();
-      const pageX = "touches" in e ? e.touches[0].pageX : e.pageX;
-      const walk = pageX - startX;
-      container.scrollLeft = scrollLeft - walk;
-    };
+  const handlePointerMove = (e) => {
+    if (!isDragging || !containerRef.current) return;
+    const walk = e.clientX - startX;
+    containerRef.current.scrollLeft = scrollLeft - walk;
+  };
 
-    container.addEventListener("mousedown", startDrag);
-    container.addEventListener("mousemove", drag);
-    container.addEventListener("mouseup", endDrag);
-    container.addEventListener("mouseleave", endDrag);
-
-    container.addEventListener("touchstart", startDrag);
-    container.addEventListener("touchmove", drag);
-    container.addEventListener("touchend", endDrag);
-
-    return () => {
-      container.removeEventListener("mousedown", startDrag);
-      container.removeEventListener("mousemove", drag);
-      container.removeEventListener("mouseup", endDrag);
-      container.removeEventListener("mouseleave", endDrag);
-
-      container.removeEventListener("touchstart", startDrag);
-      container.removeEventListener("touchmove", drag);
-      container.removeEventListener("touchend", endDrag);
-    };
-  }, []);
+  const handlePointerUp = () => setIsDragging(false);
+  const handlePointerLeave = () => setIsDragging(false);
 
   return (
-    <div className="h-fit px-4 lg:px-24">
-      <div className="grid gap-6">
-        <div>
-          <p className="text-white text-4xl lg:text-6xl">RECENT</p>
-          <div className="flex">
-            <p className="text-white text-4xl lg:text-6xl textFont">Clients</p>
-          </div>
-          <p className="text-gray-400 text-2xl lg:text-2xl">
-            Click on the clients' logo for more information.
-          </p>
+    <div className="h-fit px-4 lg:px-24 ">
+      <div>
+        <p className="text-white text-4xl lg:text-6xl">RECENT</p>
+        <div className="flex">
+          <p className="text-white text-4xl lg:text-6xl textFont">Clients</p>
         </div>
+        <p className="text-gray-400 text-2xl">
+          Click on the clients' logo for more information.
+        </p>
       </div>
 
       <div
-        id="marquee-container"
+        ref={containerRef}
         className="w-full my-12 overflow-x-scroll cursor-grab scrollbar-hide"
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
+        onPointerUp={handlePointerUp}
+        onPointerLeave={handlePointerLeave}
       >
-        <div className={`flex gap-4 ${animate ? "animate-marquee" : ""}`}>
+        <div className="flex gap-4">
           {marqueeImages.map((img, i) => (
             <a
               key={`${img.src}-${i}`}
@@ -211,12 +177,13 @@ export const Solutions = () => {
             >
               <Image
                 src={img.src}
-                alt={`Client ${(i % images.length) + 1}`}
+                alt={`Client ${i + 1}`}
                 width={350}
                 height={350}
                 className="w-full h-full object-contain"
-                quality={100}
-                priority={i < 4}
+                quality={85}
+                priority={i < 3}
+                loading={i < 3 ? "eager" : "lazy"}
               />
             </a>
           ))}

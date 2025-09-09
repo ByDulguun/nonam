@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import React, { useEffect } from "react";
+import React from "react";
 import CountUp from "react-countup";
 
 const Page = () => {
@@ -52,18 +52,17 @@ const Page = () => {
     },
   ];
 
-  const marqueeMembers = [
-    ...mockTeamMembers,
-    ...mockTeamMembers,
-    ...mockTeamMembers,
-  ];
+  // Optimize Cloudinary URLs (auto format & quality)
+  const optimizedMembers = mockTeamMembers.map((m) => ({
+    ...m,
+    src: m.src.replace("/upload/", "/upload/f_auto,q_auto/"),
+  }));
 
-  useEffect(() => {
-    mockTeamMembers.forEach((member) => {
-      const image = document.createElement("img");
-      image.src = member.src;
-    });
-  }, []);
+  const marqueeMembers = [
+    ...optimizedMembers,
+    ...optimizedMembers,
+    ...optimizedMembers,
+  ];
 
   return (
     <div className="pb-24 w-full overflow-x-hidden">
@@ -81,6 +80,7 @@ const Page = () => {
         </div>
       </div>
 
+      {/* Scrolling team members */}
       <div className="w-full overflow-x-hidden my-20 flex justify-center overflow-y-hidden">
         <div className="flex gap-6 animate-marquee1 ">
           {marqueeMembers.map((member, index) => (
@@ -92,18 +92,21 @@ const Page = () => {
             >
               <Image
                 src={member.src}
-                className="w-full h-full object-contain"
+                alt={member.alt}
                 width={300}
                 height={400}
-                quality={100}
-                alt={member.alt}
-                priority={index < 6}
+                quality={80}
+                className="w-full h-full object-contain"
+                sizes="(max-width: 768px) 200px, (max-width: 1200px) 250px, 300px"
+                priority={index < 2}
+                loading={index < 2 ? "eager" : "lazy"}
               />
             </div>
           ))}
         </div>
       </div>
 
+      {/* Stats */}
       <div className="flex gap-4 items-start  justify-center  lg:justify-around pb-12">
         <div className="grid gap-3">
           <div className="flex gap-2 items-center  justify-center">
@@ -154,6 +157,7 @@ const Page = () => {
         </div>
       </div>
 
+      {/* FAQ Section */}
       <div className="flex w-fit gap-2 px-6 pt-24 lg:grid lg:px-24">
         <div className="lg:flex w-fit gap-2 grid">
           <p className="text-white text-4xl lg:text-8xl ">ТҮГЭЭМЭЛ </p>
@@ -162,54 +166,59 @@ const Page = () => {
           </p>
         </div>
       </div>
+
       <div className="py-8 grid gap-1 lg:flex relative px-4  lg:px-24 items-center">
-        <div className="bg-[#222] grid h-fit gap-1 p-10 lg:flex-1  ">
+        <div className="bg-[#222] grid h-fit gap-1 p-10 lg:flex-1">
           <div className=" w-10 h-10 textFont text-4xl">01</div>
-          <p className="text-white  w-full font-medium text-2xl  ">
+          <p className="text-white font-medium text-2xl">
             FB, Instagram гэх мэт платформ хөгжүүлэх хугацаа?
           </p>
-          <p className="text-[#b2b2b2]  text-md w-full  ">
+          <p className="text-[#b2b2b2] text-md">
             Хагас жил болон түүнээс дээш хугацаагаар хамтран ажиллах гэрээ
             хийдэг. Энэ нь брэндийн танигдах байдлын хэмжих боломжит хугацаа юм.
           </p>
         </div>
+
         <div className="bg-[#222] grid h-fit gap-1 p-10 lg:flex-1">
           <div className=" w-10 h-10 textFont text-4xl">02</div>
-          <p className="text-white w-full font-medium text-2xl">
+          <p className="text-white font-medium text-2xl">
             Бүүстийн зардал орсон уу?
           </p>
-          <p className="text-[#b2b2b2] w-full text-md">
+          <p className="text-[#b2b2b2] text-md">
             Захиалагч тус бүрийн жилийн төсвөөс хамаардаг ажил тул, бүүстийн
             зардал багтаагүй болно.
           </p>
         </div>
+
         <div className="bg-[#222] grid h-fit gap-1 p-10 lg:flex-1">
           <div className=" w-10 h-10 textFont text-4xl">03</div>
-          <p className="text-white w-full font-medium text-2xl">
+          <p className="text-white font-medium text-2xl">
             Олны танил, инфлүэнсэрүүдтэй хамтарч ажилладаг уу?
           </p>
-          <p className="text-[#b2b2b2] w-full text-md">
+          <p className="text-[#b2b2b2] text-md">
             Тийм, хамтран ажиллах үнийн дүнг нь Захиалагч тал хариуцна. Бид
             ажлын хариуцлагад нь хяналт хийн, удирдаж ажиллана.
           </p>
         </div>
+
         <div className="bg-[#222] grid h-fit gap-1 p-10 lg:flex-1">
           <div className=" w-10 h-10 textFont text-4xl">04</div>
-          <p className="text-white w-full font-medium text-2xl">
+          <p className="text-white font-medium text-2xl">
             ROMI хэрхэн тооцох вэ?
           </p>
-          <p className="text-[#b2b2b2] w-full text-md">
+          <p className="text-[#b2b2b2] text-md">
             Манай агентлаг нь борлуулалтын чиглэлээр үйл ажиллагаа явуулдаггүй
             тул ROMI тооцдоггүй. Гэхдээ шаардлагатай тохиолдолд тооцох ажил дээр
             хамтран ажиллах боломжтой.
           </p>
         </div>
+
         <div className="bg-[#222] grid h-fit gap-1 p-10 lg:flex-1">
           <div className=" w-10 h-10 textFont text-4xl">05</div>
-          <p className="text-white w-full font-medium text-2xl">
+          <p className="text-white font-medium text-2xl">
             Лангууны тохижилт хийдэг үү?
           </p>
-          <p className="text-[#b2b2b2] w-full text-md">
+          <p className="text-[#b2b2b2] text-md">
             Хийнэ. Бид Таванбогд, МСД, Алтан жолоо, MCS гэх мэт олон компанитай
             хамтран ажилласан туршлагатай.
           </p>

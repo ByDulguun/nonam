@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 export const Stories = () => {
   const stories = [
@@ -25,7 +25,6 @@ export const Stories = () => {
       right:
         "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757388735/right_badrakh_rnto57.png",
     },
-
     {
       left: "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757388759/left_s4dobt.png",
       center:
@@ -42,21 +41,41 @@ export const Stories = () => {
     },
   ];
 
-  // Preload images for faster showing
+  const videoRefs = useRef([]);
+
   useEffect(() => {
+    // Preload side images
     stories.forEach((story) => {
-      // Preload left image
-      const leftImg = document.createElement("img");
-      leftImg.src = story.left;
-1
-      // Preload right image
-      const rightImg = document.createElement("img");
-      rightImg.src = story.right;
+      new window.Image().src = story.left;
+      new window.Image().src = story.right;
     });
+
+    // Intersection Observer for center videos
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const video = entry.target;
+          if (entry.intersectionRatio >= 0.6) {
+            video.play().catch(() => {});
+          } else {
+            video.pause();
+          }
+        });
+      },
+      {
+        threshold: Array.from({ length: 101 }, (_, i) => i / 100),
+      }
+    );
+
+    videoRefs.current.forEach((video) => observer.observe(video));
+
+    return () => {
+      videoRefs.current.forEach((video) => observer.unobserve(video));
+    };
   }, []);
 
   return (
-    <div className="h-fit px-4 lg:px-24 py-12 bg-[#0a0a0a]">
+    <div className="h-fit px-4 lg:px-24 py-12 bg-[#222]">
       <h2 className="text-white text-4xl lg:text-6xl mb-12">VISUALS</h2>
 
       <div className="flex flex-col gap-12">
@@ -71,23 +90,28 @@ export const Stories = () => {
                 src={story.left}
                 width={400}
                 height={340}
-                alt="left"
+                alt="left visual"
                 className="w-full h-full object-cover rounded-lg"
-                quality={100}
+                quality={85}
                 priority={idx < 2}
+                loading={idx < 2 ? "eager" : "lazy"}
+                placeholder="blur"
+                blurDataURL="/placeholder.png"
               />
             </div>
 
             {/* Center Video */}
             <div className="flex-1 w-full lg:w-1/2">
               <video
+                ref={(el) => {
+                  if (el) videoRefs.current[idx] = el;
+                }}
                 src={story.center}
-                className="w-full h-full object-cover rounded-lg"
-                autoPlay
+                className="w-full h-full object-cover rounded-lg border-none shadow-none"
                 muted
                 loop
                 playsInline
-                preload="metadata"
+                preload={idx < 2 ? "auto" : "metadata"}
               />
             </div>
 
@@ -97,10 +121,13 @@ export const Stories = () => {
                 src={story.right}
                 width={400}
                 height={340}
-                alt="right"
+                alt="right visual"
                 className="w-full h-full object-cover rounded-lg"
-                quality={100}
+                quality={85}
                 priority={idx < 2}
+                loading={idx < 2 ? "eager" : "lazy"}
+                placeholder="blur"
+                blurDataURL="/placeholder.png"
               />
             </div>
           </section>
