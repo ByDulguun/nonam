@@ -3,63 +3,63 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 
 export const Solutions = () => {
-  const [animate, setAnimate] = useState(false);
+  const [animate, setAnimate] = useState(true);
 
   const images = [
     {
-      src: "/solutions/image 1.png",
+      src: "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757387218/image_1_ynp8ue.png",
       link: "https://www.facebook.com/BSBServiceOfficial",
     },
     {
-      src: "/solutions/image 2.png",
+      src: "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757387219/image_2_tarqrl.png",
       link: "https://www.facebook.com/businesspos.mn",
     },
     {
-      src: "/solutions/image 3.png",
+      src: "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757387220/image_3_qrydmt.png",
       link: "https://www.facebook.com/ARAcomplex",
     },
     {
-      src: "/solutions/image 4.png",
+      src: "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757387226/image_4_cc2ptp.png",
       link: "https://www.facebook.com/GoldenGobi",
     },
     {
-      src: "/solutions/image 5.png",
+      src: "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757387225/image_5_ajaawg.png",
       link: "https://www.facebook.com/badrakhenergy",
     },
     {
-      src: "/solutions/image 6.png",
+      src: "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757387219/image_6_blkdc4.png",
       link: "https://www.facebook.com/higold.mongolia",
     },
     {
-      src: "/solutions/image 7.png",
+      src: "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757387219/image_7_x72qfq.png",
       link: "https://www.facebook.com/MunchkinMongolia",
     },
     {
-      src: "/solutions/image 8.png",
+      src: "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757387220/image_8_twds3l.png",
       link: "https://www.facebook.com/URMineMongolia",
     },
     {
-      src: "/solutions/image 9.png",
+      src: "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757387227/image_9_o4zgyg.png",
       link: "https://www.facebook.com/AsianaUlaanbaatar",
     },
     {
-      src: "/solutions/image 10.png",
+      src: "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757387226/image_10_srgs9u.png",
       link: "https://www.facebook.com/EasyCookMN",
     },
     {
-      src: "/solutions/image 11.png",
+      src: "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757387220/image_11_ihwmdt.png",
       link: "https://www.facebook.com/nuby.monos",
     },
     {
-      src: "/solutions/image 12.png",
+      src: "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757387220/image_12_mhhfpl.png",
       link: "https://www.facebook.com/hkmall.mn",
     },
     {
-      src: "/solutions/image 13.png",
+      src: "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757387226/image_13_scttsq.png",
       link: "https://www.facebook.com/musubi.baby.products",
     },
     {
-      src: "/solutions/image 14.png",
+      src: "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757387220/image_14_lxf9ua.png",
       link: "https://www.facebook.com/NaturaMongolia",
     },
     {
@@ -71,39 +71,41 @@ export const Solutions = () => {
       link: "https://www.facebook.com/asimonbrokers",
     },
     {
-      src: "/solutions/image 17.png",
+      src: "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757387225/image_15_hm7nds.png",
       link: "https://www.facebook.com/Unisteel.mn",
     },
     {
-      src: "/solutions/image 18.png",
+      src: "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757387220/image_18_ou16q7.png",
       link: "https://www.facebook.com/profile.php?id=100057144263178",
     },
     {
-      src: "/solutions/image 19.png",
+      src: "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757387219/image_19_wmk0nk.png",
       link: "https://www.facebook.com/taxacc.mn",
     },
     {
-      src: "/solutions/image 20.png",
+      src: "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757387219/image_20_lmdmyp.png",
       link: "https://www.facebook.com/UrbanSmileClinic",
     },
     {
-      src: "/solutions/image 21.png",
+      src: "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757387217/image_21_i5qdg2.png",
       link: "https://www.facebook.com/trytools.fun",
     },
     {
-      src: "/solutions/image 22.png",
+      src: "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757387219/image_22_l21qwu.png",
       link: "https://www.facebook.com/profile.php?id=61556929860543",
     },
   ];
 
   const marqueeImages = [...images, ...images];
 
+  // IntersectionObserver to start animation when in view
   useEffect(() => {
     const container = document.querySelector("#marquee-container");
     if (!container) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
+        if (animate) return; // animation already stopped by drag
         setAnimate(entry.isIntersecting && entry.intersectionRatio > 0.5);
       },
       { threshold: 0.5 }
@@ -113,6 +115,62 @@ export const Solutions = () => {
 
     return () => {
       observer.disconnect();
+    };
+  }, [animate]);
+
+  // Mouse drag & touch scroll
+  useEffect(() => {
+    const container = document.getElementById("marquee-container");
+    if (!container) return;
+
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    const startDrag = (e) => {
+      isDown = true;
+      const pageX = "touches" in e ? e.touches[0].pageX : e.pageX;
+      startX = pageX - container.offsetLeft;
+      scrollLeft = container.scrollLeft;
+      container.classList.add("cursor-grabbing");
+
+      setAnimate(false);
+    };
+
+    const endDrag = () => {
+      if (!isDown) return;
+      isDown = false;
+      container.classList.remove("cursor-grabbing");
+
+      setAnimate(true);
+    };
+
+    const drag = (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const pageX = "touches" in e ? e.touches[0].pageX : e.pageX;
+      const walk = pageX - startX;
+      container.scrollLeft = scrollLeft - walk;
+    };
+
+    container.addEventListener("mousedown", startDrag);
+    container.addEventListener("mousemove", drag);
+    container.addEventListener("mouseup", endDrag);
+    container.addEventListener("mouseleave", endDrag);
+
+    container.addEventListener("touchstart", startDrag);
+    container.addEventListener("touchmove", drag);
+    container.addEventListener("touchend", endDrag);
+
+    return () => {
+      container.removeEventListener("mousedown", startDrag);
+      container.removeEventListener("mousemove", drag);
+      container.removeEventListener("mouseup", endDrag);
+      container.removeEventListener("mouseleave", endDrag);
+
+      container.removeEventListener("touchstart", startDrag);
+      container.removeEventListener("touchmove", drag);
+      container.removeEventListener("touchend", endDrag);
     };
   }, []);
 
@@ -132,7 +190,7 @@ export const Solutions = () => {
 
       <div
         id="marquee-container"
-        className="w-full my-12 overflow-x-scroll scrollbar-hide"
+        className="w-full my-12 overflow-x-scroll cursor-grab scrollbar-hide"
       >
         <div className={`flex gap-4 ${animate ? "animate-marquee" : ""}`}>
           {marqueeImages.map((img, i) => (
@@ -150,6 +208,7 @@ export const Solutions = () => {
                 height={350}
                 className="w-full h-full object-contain"
                 quality={100}
+                loading="lazy"
               />
             </a>
           ))}

@@ -5,15 +5,59 @@ import React from "react";
 import CountUp from "react-countup";
 
 const Page = () => {
-  const router = useRouter();
+  const mockTeamMembers = [
+    {
+      id: 1,
+      src: "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757389488/tulgaa-1-copy_0005_MARGAD--GRAPHIC-DESIGNER-copy_ezskxw.png",
+      alt: "Team Member 1",
+    },
+    {
+      id: 2,
+      src: "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757389491/tulgaa-1-copy_0002_onon--TEAM-LEADER--copy_tovvag.png",
+      alt: "Team Member 2",
+    },
+    {
+      id: 3,
+      src: "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757389492/tulgaa-1-copy_0008_NOMIN--COO-copy_lnwkoj.png",
+      alt: "Team Member 3",
+    },
+    {
+      id: 4,
+      src: "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757389494/tulgaa-1-copy_0006_Trent--CAMMAN-copy_jloatf.png",
+      alt: "Team Member 4",
+    },
+    {
+      id: 5,
+      src: "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757389497/tulgaa-1-copy_0000_NARHAN--VIDEO-ASSISTANT-copy_al8efi.png",
+      alt: "Team Member 5",
+    },
+    {
+      id: 6,
+      src: "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757389497/tulgaa-1-copy_0003_budgee--GRAPHIC-DESIGNER--copy_fgqp8p.png",
+      alt: "Team Member 6",
+    },
+    {
+      id: 7,
+      src: "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757389498/tulgaa-1-copy_0004_boloroo--CONTENT-CREATOR--copy_jo0u2n.png",
+      alt: "Team Member 7",
+    },
+    {
+      id: 8,
+      src: "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757389504/tulgaa-1-copy_0007_-TULGA--VISUAL-IDENTITY_wg2qkf.png",
+      alt: "Team Member 8",
+    },
+    {
+      id: 9,
+      src: "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757389505/tulgaa-1-copy_0001_TSOLMON--DIGITAL-ARTIST--copy_r05yts.png",
+      alt: "Team Member 9",
+    },
+  ];
 
-  const teamMembers = Array.from({ length: 9 }).map((_, index) => ({
-    id: index + 1,
-    src: `/about/image${index + 1}.png`,
-    alt: `Team member ${index + 1}`,
-  }));
-
-  const marqueeMembers = [...teamMembers, ...teamMembers, ...teamMembers];
+  const marqueeMembers = [
+    ...mockTeamMembers,
+    ...mockTeamMembers,
+    ...mockTeamMembers,
+  ];
 
   return (
     <div className="pb-24 w-full overflow-x-hidden">
@@ -31,7 +75,7 @@ const Page = () => {
         </div>
       </div>
 
-      <div className="w-full overflow-x-hidden my-20 flex justify-center">
+      <div className="w-full overflow-x-hidden my-20 flex justify-center overflow-y-hidden">
         <div className="flex gap-6 animate-marquee1 ">
           {marqueeMembers.map((member, index) => (
             <div

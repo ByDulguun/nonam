@@ -1,11 +1,9 @@
 "use client";
 import Image from "next/image";
 import React from "react";
-import { IoIosArrowRoundForward } from "react-icons/io";
 import { useRouter } from "next/navigation";
 
 export const Footer = () => {
-  const date = new Date().getFullYear();
   const router = useRouter();
 
   const handleSocialClick = (url) => {
@@ -68,10 +66,12 @@ export const Footer = () => {
             ))}
           </div>
         </div>
-        <p className="text-[#b2b2b2] py-6 text-center">{date} Copyright</p>
+        <div className="p-12 flex justify-center text-white text-center">
+          &copy; {new Date().getFullYear()} Greativity. All rights reserved.
+        </div>
       </div>
 
-      <div className="hidden lg:block">
+      <div className="hidden lg:block ">
         <div className="flex justify-around py-12">
           <div className="grid gap-3 h-fit">
             <div className="flex items-center gap-2">
@@ -128,7 +128,9 @@ export const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="p-12 flex justify-center"></div>
+        <div className="p-12 flex justify-center text-white text-center">
+          &copy; {new Date().getFullYear()} Greativity. All rights reserved.
+        </div>
       </div>
     </>
   );

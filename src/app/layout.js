@@ -7,7 +7,23 @@ export const metadata = {
   title: "Greativity",
   description: "Creative Agency",
   icons: {
-    icon: "/logo.png",
+    icon: [
+      {
+        url: "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757399731/red_1_aqqyqa.png",
+        type: "image/png",
+        sizes: "32x32", // tab icon
+      },
+      {
+        url: "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757399731/red_1_aqqyqa.png",
+        type: "image/png",
+        sizes: "64x64", // higher resolution for retina
+      },
+      {
+        url: "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757399731/red_1_aqqyqa.png",
+        type: "image/png",
+        sizes: "128x128", // PWA / large displays
+      },
+    ],
   },
 };
 

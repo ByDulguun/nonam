@@ -1,287 +1,93 @@
 "use client";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
 
 export const Stories = () => {
-  const firstRef = useRef();
+  const stories = [
+    {
+      left: "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757388797/asiana_kcqenq.png",
+      center:
+        "https://res.cloudinary.com/dyg5xx89p/video/upload/v1757388820/asiana_cocktail_znyog9.mp4",
+      right:
+        "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757388790/asiana_right_d1hgd9.png",
+    },
+    {
+      left: "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757388800/bolorleft_picvzw.jpg",
+      center:
+        "https://res.cloudinary.com/dyg5xx89p/video/upload/v1757389031/bsb_delonghi_opc0rb.mp4",
+      right:
+        "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757388721/rightbsb_dsl1fy.png",
+    },
+    {
+      left: "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757388771/badrakh_left_2_vyroox.png",
+      center:
+        "https://res.cloudinary.com/dyg5xx89p/video/upload/v1757389387/Badrakh_codec_1_xenunk.mp4",
+      right:
+        "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757388735/right_badrakh_rnto57.png",
+    },
 
-  useEffect(() => {
-    const handleMouseMove = (event) => {
-      const { clientX: x, clientY: y } = event;
-      const centerX = window.innerWidth / 2;
-      const centerY = window.innerHeight / 2;
-      const rotateX = (y - centerY) / 100;
-      const rotateY = (x - centerX) / 100;
+    {
+      left: "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757388759/left_s4dobt.png",
+      center:
+        "https://res.cloudinary.com/dyg5xx89p/video/upload/v1757389045/bsb_washing_machine_aasaqe.mp4",
+      right:
+        "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757388783/badrakh_v1v23q.png",
+    },
+    {
+      left: "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757388747/left_higold_ezkj62.png",
+      center:
+        "https://res.cloudinary.com/dyg5xx89p/video/upload/v1757389091/higold_reel_terelj_bosoo_dsiv8u.mp4",
+      right:
+        "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757388766/higold_right_zwtbvs.png",
+    },
+  ];
 
-      if (firstRef.current) {
-        firstRef.current.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateX(${
-          rotateY * 10
-        }px) translateY(${rotateX * 10}px)`;
-      }
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-    };
-  }, []);
-  const secondRef = useRef();
-
-  useEffect(() => {
-    const handleMouseMove = (event) => {
-      const { clientX: x, clientY: y } = event;
-      const centerX = window.innerWidth / 2;
-      const centerY = window.innerHeight / 2;
-      const rotateX = (y - centerY) / 100;
-      const rotateY = (x - centerX) / 100;
-
-      if (secondRef.current) {
-        secondRef.current.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateX(${
-          rotateY * 10
-        }px) translateY(${rotateX * 10}px)`;
-      }
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-    };
-  }, []);
-  const thirthRef = useRef();
-
-  useEffect(() => {
-    const handleMouseMove = (event) => {
-      const { clientX: x, clientY: y } = event;
-      const centerX = window.innerWidth / 2;
-      const centerY = window.innerHeight / 2;
-      const rotateX = (y - centerY) / 100;
-      const rotateY = (x - centerX) / 100;
-
-      if (thirthRef.current) {
-        thirthRef.current.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateX(${
-          rotateY * 10
-        }px) translateY(${rotateX * 10}px)`;
-      }
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-    };
-  }, []);
-  const fourthRef = useRef();
-
-  useEffect(() => {
-    const handleMouseMove = (event) => {
-      const { clientX: x, clientY: y } = event;
-      const centerX = window.innerWidth / 2;
-      const centerY = window.innerHeight / 2;
-      const rotateX = (y - centerY) / 100;
-      const rotateY = (x - centerX) / 100;
-
-      if (fourthRef.current) {
-        fourthRef.current.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateX(${
-          rotateY * 10
-        }px) translateY(${rotateX * 10}px)`;
-      }
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-    };
-  }, []);
   return (
-    <div className="h-fit ">
-      <div className="grid gap-6 px-4 lg:px-24 lg:pt-24">
-        <div className="flex gap-1 lg:grid">
-          <p className="text-white text-4xl lg:text-6xl">VISUALS</p>
-          {/* <p className="text-white text-4xl lg:text-6xl textFont"></p> */}
-        </div>
-      </div>
-      <div className="py-12 relative">
-        <div className="relative">
-          {/* First section: Image-Video */}
-          <div className="sticky bottom-0 z-40 flex cursor-pointer lg:max-h-[600px] h-fit w-full bg-[#0a0a0a]">
-            <div className="lg:flex grid w-full justify-center">
-              <div>
-                <Image
-                  src="/stories/asiana.png"
-                  width={400}
-                  height={340}
-                  alt="hi"
-                  className="lg:w-fit w-full h-full lg:h-full object-cover"
-                  quality={100}
-                />
-              </div>
-              <div>
-                <video
-                  src="/stories/asiana.mp4"
-                  className="w-fit h-full object-cover"
-                  autoPlay={true}
-                  muted
-                  loop
-                  playsInline
-                />
-              </div>
-              <div>
-                <Image
-                  src="/stories/asianaleft.png"
-                  width={400}
-                  height={340}
-                  alt="hi"
-                  className="lg:w-fit w-full h-full lg:h-full object-cover lg:block hidden"
-                  quality={100}
-                />
-              </div>
-            </div>
-          </div>
+    <div className="h-fit px-4 lg:px-24 py-12 bg-[#0a0a0a]">
+      <h2 className="text-white text-4xl lg:text-6xl mb-12">VISUALS</h2>
 
-          {/* Second section: Video-Image */}
-          <div className="sticky cursor-pointer lg:bottom-0 -bottom-120 z-30 lg:max-h-[600px] h-fit flex bg-[#0a0a0a]">
-            <div className="lg:flex grid w-full justify-center">
-              <div>
-                <Image
-                  src="/stories/bsbleft.png"
-                  width={400}
-                  height={340}
-                  alt="hi"
-                  className="lg:w-fit w-full h-full lg:h-full object-cover"
-                  quality={100}
-                />
-              </div>
-              <div>
-                <video
-                  src="/stories/bsb.mp4"
-                  className="w-fit h-full object-cover"
-                  autoPlay={true}
-                  muted
-                  loop
-                  playsInline
-                />
-              </div>
-              <div>
-                <Image
-                  src="/stories/bsbright.png"
-                  width={400}
-                  height={340}
-                  alt="hi"
-                  className="lg:w-fit w-full h-full lg:h-full object-cover lg:block hidden"
-                  quality={100}
-                />
-              </div>
+      <div className="flex flex-col gap-12">
+        {stories.map((story, idx) => (
+          <section
+            key={idx}
+            className="flex flex-col lg:flex-row items-center gap-4 lg:gap-8 w-full overflow-hidden"
+          >
+            {/* Left Image */}
+            <div className="flex-1 w-full lg:w-1/4">
+              <Image
+                src={story.left}
+                width={400}
+                height={340}
+                alt="left"
+                className="w-full h-full object-cover rounded-lg"
+                quality={100}
+              />
             </div>
-          </div>
 
-          {/* Third section: Image-Video */}
-          <div className="sticky cursor-pointer lg:bottom-0 -bottom-120 z-20 lg:max-h-[600px] h-fit flex bg-[#0a0a0a]">
-            <div className="lg:flex grid w-full justify-center">
-              <div>
-                <Image
-                  src="/stories/badrakhleft.png"
-                  width={400}
-                  height={340}
-                  alt="hi"
-                  className="lg:w-fit w-full h-full lg:h-full object-cover"
-                  quality={100}
-                />
-              </div>
-              <div>
-                <video
-                  src="/stories/badrah.mp4"
-                  className="w-fit h-full object-cover"
-                  autoPlay={true}
-                  muted
-                  loop
-                  playsInline
-                />
-              </div>
-              <div>
-                <Image
-                  src="/stories/badrakhright.png"
-                  width={400}
-                  height={340}
-                  alt="hi"
-                  className="lg:w-fit w-full h-full lg:h-full object-cover lg:block hidden"
-                  quality={100}
-                />
-              </div>
+            {/* Center Video */}
+            <div className="flex-1 w-full lg:w-1/2">
+              <video
+                src={story.center}
+                className="w-full h-full object-cover rounded-lg"
+                autoPlay
+                muted
+                loop
+                playsInline
+              />
             </div>
-          </div>
 
-          {/* Fourth section: Video-Image */}
-          <div className="sticky cursor-pointer lg:bottom-0 -bottom-120 z-10 lg:max-h-[600px] flex bg-[#0a0a0a]">
-            <div className="lg:flex grid w-full justify-center">
-              <div>
-                <Image
-                  src="/stories/bolorleft.jpg"
-                  width={400}
-                  height={340}
-                  alt="hi"
-                  className="lg:w-fit w-full h-full lg:h-full object-cover"
-                  quality={100}
-                />
-              </div>
-              <div>
-                <video
-                  src="/stories/bsb2.mp4"
-                  className="w-fit h-full object-cover"
-                  autoPlay={true}
-                  muted
-                  loop
-                  playsInline
-                />
-              </div>
-              <div>
-                <Image
-                  src="/stories/rightbsb.png"
-                  width={400}
-                  height={340}
-                  alt="hi"
-                  className="lg:w-fit w-full h-full lg:h-full object-cover lg:block hidden"
-                  quality={100}
-                />
-              </div>
+            {/* Right Image */}
+            <div className="flex-1 w-full lg:w-1/4 hidden lg:block">
+              <Image
+                src={story.right}
+                width={400}
+                height={340}
+                alt="right"
+                className="w-full h-full object-cover rounded-lg"
+                quality={100}
+              />
             </div>
-          </div>
-
-          {/* Fifth section: Image-Video */}
-          <div className="sticky cursor-pointer lg:bottom-0 -bottom-120 z-0 lg:max-h-[600px] h-fit flex bg-[#0a0a0a]">
-            <div className="lg:flex grid w-full justify-center">
-              <div>
-                <Image
-                  src="/stories/higoldleft.png"
-                  width={400}
-                  height={340}
-                  alt="hi"
-                  className="lg:w-fit w-full h-full lg:h-full object-cover"
-                  quality={100}
-                />
-              </div>
-              <div>
-                <video
-                  src="/stories/higold.mp4"
-                  className="w-fit h-full object-cover"
-                  autoPlay={true}
-                  muted
-                  loop
-                  playsInline
-                />
-              </div>
-              <div>
-                <Image
-                  src="/stories/higoldright.png"
-                  width={400}
-                  height={340}
-                  alt="hi"
-                  className="lg:w-fit w-full h-full lg:h-full object-cover lg:block hidden"
-                  quality={100}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
+          </section>
+        ))}
       </div>
     </div>
   );

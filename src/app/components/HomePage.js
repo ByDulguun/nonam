@@ -9,7 +9,48 @@ export const HomePage = () => {
   const [isClient, setIsClient] = useState(false);
   const [windowWidth, setWindowWidth] = useState(0);
   const router = useRouter();
-
+  const mockImages = [
+    {
+      id: 1,
+      src: "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757387836/pro-1_-_Copy_nxgjlw.png",
+      alt: "First Image",
+    },
+    {
+      id: 2,
+      src: "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757387837/Untitled-1_0003_486326230_1054045786755569_6728907256753359962_n_pmytds.png",
+      alt: "Second Image",
+    },
+    {
+      id: 3,
+      src: "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757387839/Untitled-2_1_rrvxux.png",
+      alt: "Third Image",
+    },
+    {
+      id: 4,
+      src: "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757387848/Untitled-1_w61mhf.png",
+      alt: "Fourth Image",
+    },
+    {
+      id: 5,
+      src: "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757387857/Untitled-1_0001_482238367_664107755981556_3836143425791461448_n_gsjuh3.png",
+      alt: "Fifth Image",
+    },
+    {
+      id: 6,
+      src: "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757387863/Untitled-1_0000_482244625_1026775006153324_8028470251155227980_n_kz2cet.png",
+      alt: "Sixth Image",
+    },
+    {
+      id: 7,
+      src: "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757387868/Untitled-1_0002_488897524_1603813107240898_2381881758002387536_n_muqymd.png",
+      alt: "Seventh Image",
+    },
+    {
+      id: 8,
+      src: "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757387863/Untitled-1_0000_482244625_1026775006153324_8028470251155227980_n_kz2cet.png",
+      alt: "Eighth Image",
+    },
+  ];
   useEffect(() => {
     setIsClient(true);
     setWindowWidth(window.innerWidth);
@@ -27,7 +68,7 @@ export const HomePage = () => {
         >
           {isClient && windowWidth > 1025 ? (
             <>
-              {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
+              {mockImages.map((item, i) => (
                 <span
                   key={i}
                   style={{
@@ -41,19 +82,20 @@ export const HomePage = () => {
                   }}
                 >
                   <Image
-                    src={`/home/image${i}.png`}
+                    src={item.src}
                     width={250}
                     height={250}
                     className="lg:w-[400px] lg:h-[400px] object-contain"
                     alt={`Image ${i}`}
                     quality={100}
+                    priority={true}
                   />
                 </span>
               ))}
             </>
           ) : (
             <>
-              {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
+              {mockImages.map((item, i) => (
                 <span
                   key={i}
                   style={{
@@ -67,12 +109,13 @@ export const HomePage = () => {
                   }}
                 >
                   <Image
-                    src={`/home/image${i}.png`}
+                    src={item.src}
                     width={250}
                     height={250}
                     className="lg:w-[400px] lg:h-[400px] object-contain"
                     alt={`Image${i}`}
                     quality={100}
+                    priority={true}
                   />
                 </span>
               ))}
@@ -114,11 +157,7 @@ export const HomePage = () => {
           <h1 className="text-[#ed2939] w-[100%] lg:w-[400px] font-bold">
             MARKETING AGENCY SINCE 2018
           </h1>
-          {/* <p className="text-[#b3b3b3]">
-            Social Media Marketing,Content Marketing, Social Platform
-            Development, <br /> Consumer Behavior and Emotional Marketing,
-            ATL/AboveTheLine/ plan, <br /> Training and Coaching, Consulting
-          </p> */}
+
           <div
             className="flex items-end gap-1  border-[#b3b3b3] border-b-1 w-fit"
             onClick={() => router.push("/contact")}
