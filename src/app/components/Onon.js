@@ -19,7 +19,7 @@ export const Onon = () => {
       <div className="lg:pl-24 pl-0 flex">
         <div className="relative lg:h-screen lg:w-[80%] w-full h-[200px]">
           <Image
-            src="https://res.cloudinary.com/dyg5xx89p/image/upload/v1757400404/ononegch_1_kanvw2.png"
+            src="https://res.cloudinary.com/dyg5xx89p/image/upload/v1757410277/ononegch_1_1_wdnkhy.png"
             alt="Onon Visual"
             fill
             className="object-contain"
