@@ -17,7 +17,7 @@ export const Onon = () => {
 
       {/* Image Section */}
       <div className="lg:pl-24 pl-0 flex">
-        <div className="relative lg:h-screen lg:w-[80%] w-full h-[200px]">
+        <div className="relative lg:h-screen lg:w-[80%] w-full h-[200px] m-auto">
           <Image
             src="https://res.cloudinary.com/dyg5xx89p/image/upload/v1757410277/ononegch_1_1_wdnkhy.png"
             alt="Onon Visual"
