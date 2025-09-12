@@ -147,7 +147,7 @@ export const Solutions = () => {
   const handlePointerLeave = () => setIsDragging(false);
 
   return (
-    <div className="h-fit px-4 lg:px-24 ">
+    <div className="h-fit px-4 lg:px-24 lg:pt-0 pt-12 ">
       <div>
         <p className="text-white text-4xl lg:text-6xl">RECENT</p>
         <div className="flex">

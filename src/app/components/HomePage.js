@@ -126,7 +126,7 @@ export const HomePage = () => {
           )}
         </div>
       </div>
-      <div className="w-full h-screen lg:h-[100vh] ">
+      <div className="w-full h-fit lg:h-[100vh] ">
         <div className="px-4 grid gap-4 h-fit overflow-hidden pt-48 lg:pt-12 lg:w-[100%] lg:px-24">
           <div className="grid">
             <RotatingText

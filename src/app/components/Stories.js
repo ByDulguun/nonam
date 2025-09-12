@@ -7,35 +7,35 @@ export const Stories = () => {
     {
       left: "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757388797/asiana_kcqenq.png",
       center:
-        "https://res.cloudinary.com/dyg5xx89p/video/upload/v1757388820/asiana_cocktail_znyog9.mp4",
+        "https://res.cloudinary.com/dyg5xx89p/video/upload/f_auto,q_auto/v1757388820/asiana_cocktail_znyog9.mp4",
       right:
         "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757388790/asiana_right_d1hgd9.png",
     },
     {
       left: "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757388800/bolorleft_picvzw.jpg",
       center:
-        "https://res.cloudinary.com/dyg5xx89p/video/upload/v1757389031/bsb_delonghi_opc0rb.mp4",
+        "https://res.cloudinary.com/dyg5xx89p/video/upload/f_auto,q_auto/v1757389031/bsb_delonghi_opc0rb.mp4",
       right:
         "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757388721/rightbsb_dsl1fy.png",
     },
     {
       left: "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757388771/badrakh_left_2_vyroox.png",
       center:
-        "https://res.cloudinary.com/dyg5xx89p/video/upload/v1757389387/Badrakh_codec_1_xenunk.mp4",
+        "https://res.cloudinary.com/dyg5xx89p/video/upload/f_auto,q_auto/v1757389387/Badrakh_codec_1_xenunk.mp4",
       right:
         "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757388735/right_badrakh_rnto57.png",
     },
     {
       left: "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757388759/left_s4dobt.png",
       center:
-        "https://res.cloudinary.com/dyg5xx89p/video/upload/v1757389045/bsb_washing_machine_aasaqe.mp4",
+        "https://res.cloudinary.com/dyg5xx89p/video/upload/f_auto,q_auto/v1757389045/bsb_washing_machine_aasaqe.mp4",
       right:
         "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757388783/badrakh_v1v23q.png",
     },
     {
       left: "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757388747/left_higold_ezkj62.png",
       center:
-        "https://res.cloudinary.com/dyg5xx89p/video/upload/v1757389091/higold_reel_terelj_bosoo_dsiv8u.mp4",
+        "https://res.cloudinary.com/dyg5xx89p/video/upload/f_auto,q_auto/v1757389091/higold_reel_terelj_bosoo_dsiv8u.mp4",
       right:
         "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757388766/higold_right_zwtbvs.png",
     },
@@ -68,6 +68,11 @@ export const Stories = () => {
     );
 
     videoRefs.current.forEach((video) => observer.observe(video));
+
+    // Play the first video immediately
+    if (videoRefs.current[0]) {
+      videoRefs.current[0].play().catch(() => {});
+    }
 
     return () => {
       videoRefs.current.forEach((video) => observer.unobserve(video));
@@ -107,11 +112,12 @@ export const Stories = () => {
                   if (el) videoRefs.current[idx] = el;
                 }}
                 src={story.center}
+                poster="/placeholder.png"
                 className="w-full h-full object-cover rounded-lg border-none shadow-none"
                 muted
                 loop
                 playsInline
-                preload={idx < 2 ? "auto" : "metadata"}
+                preload="auto"
               />
             </div>
 
