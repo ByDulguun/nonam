@@ -36,7 +36,7 @@ const Page = () => {
 
         <div className=" gap-2 grid h-fit">
           <p className="text-[#b2b2b2]">Adress:</p>
-          <p className="text-[#b2b2b2]">UB PLUS Office</p>
+          <p className="text-[#b2b2b2]">UB TOWER PLUS OFFICE BUILDING</p>
           <p className="text-[#b2b2b2]">
             #608 6th floor Manlaibaatar street Ulaanbaatar Mongolia
           </p>
