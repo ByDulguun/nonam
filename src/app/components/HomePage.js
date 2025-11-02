@@ -90,7 +90,7 @@ export const HomePage = () => {
                     height={250}
                     className="lg:w-[400px] lg:h-[400px] object-contain"
                     alt={item.alt}
-                    priority={i === 0} // preload first image
+                    priority={i === 0} 
                     sizes="(max-width: 1024px) 250px, 400px"
                   />
                 </span>

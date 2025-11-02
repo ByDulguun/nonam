@@ -82,7 +82,7 @@ const Page = () => {
 
       {/* Scrolling team members */}
       <div className="w-full overflow-x-hidden my-20 flex justify-center overflow-y-hidden">
-        <div className="flex gap-6 animate-marquee1 ">
+        <div className="flex gap-6 animate-marquee1">
           {marqueeMembers.map((member, index) => (
             <div
               key={`${member.id}-${index}`}
@@ -91,15 +91,18 @@ const Page = () => {
               }`}
             >
               <Image
-                src={member.src}
+                src={member.src.replace(
+                  "/upload/",
+                  "/upload/f_auto,q_auto,w_300/"
+                )}
                 alt={member.alt}
                 width={300}
                 height={400}
-                quality={80}
+                quality={90}
                 className="w-full h-full object-contain"
                 sizes="(max-width: 768px) 200px, (max-width: 1200px) 250px, 300px"
-                priority={index < 2}
-                loading={index < 2 ? "eager" : "lazy"}
+                priority={index === 0}
+                loading={index === 0 ? "eager" : "lazy"}
               />
             </div>
           ))}
