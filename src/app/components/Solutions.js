@@ -11,7 +11,7 @@ export const Solutions = () => {
   const images = [
     {
       src: "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757387218/image_1_ynp8ue.png",
-      link: "https://www.facebook.com/BSBServiceOfficial",
+      link: "https://www.facebook.com/share/1D6RpRoCzW/?mibextid=wwXIfr",
     },
     {
       src: "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757387219/image_2_tarqrl.png",
@@ -99,7 +99,7 @@ export const Solutions = () => {
     },
   ];
 
-  const marqueeImages = [...images, ...images, ...images]; // duplicate for seamless scroll
+  const marqueeImages = [...images, ...images, ...images];
 
   // Preload images
   useEffect(() => {

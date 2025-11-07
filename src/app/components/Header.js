@@ -1,235 +1,167 @@
 "use client";
 import Image from "next/image";
-
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { IoIosArrowRoundForward } from "react-icons/io";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+
+// Menu items (dynamic)
+const menuItems = [
+  { label: "НҮҮР ХУУДАС", path: "/" },
+  { label: "БИДНИЙ ТУХАЙ", path: "/about" },
+  { label: "ҮЙЛЧИЛГЭЭ", path: "/services" },
+  { label: "ХОЛБОО БАРИХ", path: "/contact" },
+];
+
+// Social items (dynamic)
+const socialLinks = [
+  { name: "FACEBOOK", url: "https://www.facebook.com/greativityagency" },
+  { name: "INSTAGRAM", url: "https://www.instagram.com/eatit_agency" },
+];
 
 export const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
-  const [showHeader, setShowHeader] = useState(true); // <-- new state
-  const [lastScrollY, setLastScrollY] = useState(0);
+
   const router = useRouter();
+  const pathname = usePathname();
 
   const handleNavigation = (path) => {
     router.push(path);
     setShowMenu(false);
   };
 
-  // <-- new useEffect for scroll
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      if (currentScrollY > lastScrollY && currentScrollY > 50) {
-        setShowHeader(false); // scrolling down
-      } else {
-        setShowHeader(true); // scrolling up
-      }
-      setLastScrollY(currentScrollY);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
-
   return (
-    <div
-      className={`sticky top-0   transition-transform duration-300 ${
-        showMenu ? "z-400" : "z-0"
-      } ${showHeader ? "translate-y-0" : "-translate-y-full"}`}
+    <header
+      className={`sticky top-0 transition-transform duration-300 ${
+        showMenu ? "z-50" : "z-20"
+      }`}
     >
-      <div className="px-4 py-8 lg:px-24 flex justify-between items-center bg-[#222] z-40">
-        <div className="w-8 h-8  ">
+      {/* Top bar */}
+      <div className="px-4 py-8 lg:px-24 flex justify-between items-center bg-[#222]">
+        {/* Hamburger */}
+        <div className="w-8 h-8">
           <div
-            className="grid gap-2 py-2.5 cursor-pointer"
-            onClick={() => setShowMenu((prev) => !prev)}
+            className="grid gap-2 py-2.5 cursor-pointer "
+            onClick={() => setShowMenu((p) => !p)}
           >
             <div className="w-full h-[1px] bg-white"></div>
             <div className="w-[80%] h-[1px] bg-white"></div>
           </div>
         </div>
+
+        {/* Logo */}
         <div
           onClick={() => router.push("/")}
           className="flex items-center gap-2 group relative overflow-hidden w-[170px] h-[26px] cursor-pointer"
         >
-          <div className="text-[1.35rem]  font-medium leading-[1] group-hover:-bottom-6.5 bottom-0 left-0 duration-700 absolute z-60 max-sm:z-0">
-            <Image
-              src={"/logoWhite.png"}
-              alt="sun"
-              width={140}
-              height={20}
-              className="object-cover "
-            />
-          </div>
-
-          <div className="text-[1.35rem]  font-medium leading-[1] absolute group-hover:bottom-0 -bottom-6.5 left-0  duration-700 z-60 max-sm:z-0">
-            <Image
-              src={"/logoRed.png"}
-              alt="sun"
-              width={140}
-              height={20}
-              className="object-cover "
-            />
-          </div>
+          <Image
+            src="/logoWhite.png"
+            alt="white logo"
+            width={140}
+            height={20}
+            className="absolute bottom-0 left-0 group-hover:-bottom-7 duration-700"
+          />
+          <Image
+            src="/logoRed.png"
+            alt="red logo"
+            width={140}
+            height={20}
+            className="absolute -bottom-7 left-0 group-hover:bottom-0 duration-700"
+          />
         </div>
       </div>
+
+      {/* Menu Overlay */}
       <div
-        className={`fixed inset-0 bg-[#222] backdrop-blur-xs duration-700 top-0 ${
-          showMenu ? "h-[1000px]" : "h-[0px]"
-        } ${showMenu ? "opacity-100 z-40" : "opacity-0 -z-10"}`}
+        className={`fixed inset-0 bg-[#222] backdrop-blur-xs transition-all duration-700 min-h-screen h-screen ${
+          showMenu
+            ? "opacity-100 translate-y-0 z-40"
+            : "opacity-0 -translate-y-full -z-10"
+        }`}
       >
-        <div
-          className={`bg-[#222] w-[40%] max-sm:w-[100%] ${
-            showMenu ? "h-[1000px]" : "h-[0px]"
-          } fixed z-70 duration-1000  ${
-            showMenu ? "top-0 left-0" : "-top-[660px] -left-[660px]"
-          }`}
-        >
-          <div className="lg:px-24 px-4 py-8">
-            <div className="w-8 h-8 cursor-pointer">
-              <div
-                className="grid gap-2 py-2.5 relative"
-                onClick={() => setShowMenu((prev) => !prev)}
-              >
-                <div
-                  className={`w-full h-[1px] bg-white transition-transform duration-500 ${
-                    showMenu ? "rotate-45 translate-y-1.5" : ""
-                  }`}
-                ></div>
-                <div
-                  className={`w-[80%] h-[1px] bg-white transition-transform duration-500 ${
-                    showMenu ? "-rotate-45 -translate-y-1.5" : ""
-                  }`}
-                ></div>
-              </div>
+        <div className="lg:px-24 px-4 py-8 w-[40%] max-sm:w-[100%]">
+          {/* Close button */}
+          <div className="w-8 h-8 cursor-pointer">
+            <div
+              className="grid gap-2 py-2.5 relative "
+              onClick={() => setShowMenu(false)}
+            >
+              <div className="w-full h-[1px] bg-white rotate-45 translate-y-1.5"></div>
+              <div className="w-[80%] h-[1px] bg-white -rotate-45 -translate-y-1.5"></div>
             </div>
-            <div className="lg:py-24 py-12 grid h-fit gap-8">
+          </div>
+
+          {/* Menu Items */}
+          <div className="lg:py-24 py-12 grid gap-8">
+            {menuItems.map((item) => (
               <div
-                onClick={() => handleNavigation("/")}
-                className="flex items-end gap-1 border-[#b3b3b3] border-b-1 w-fit"
+                key={item.path}
+                onClick={() => handleNavigation(item.path)}
+                className={`flex items-end gap-1 ${
+                  pathname === item.path
+                    ? "border-[#ed2939] border-b"
+                    : "border-[#b3b3b3] border-b"
+                } w-fit cursor-pointer`}
               >
-                <div className="flex items-center gap-2 group relative overflow-hidden  lg:w-[380px] w-[240px] h-[60px] cursor-pointer">
+                <div className="flex items-center gap-2 group relative overflow-hidden lg:w-[420px] w-[270px] h-[60px]">
                   <IoIosArrowRoundForward
-                    color="white"
-                    className={`-rotate-45 mb-1 absolute bottom-0 group-hover:-bottom-12 duration-700 `}
                     size={32}
+                    color={pathname === item.path ? "#ed2939" : "white"}
+                    className={`-rotate-45 mb-1 absolute bottom-0 duration-700 ${
+                      pathname !== item.path ? "group-hover:-bottom-12" : ""
+                    }`}
                   />
+
                   <IoIosArrowRoundForward
-                    color="white"
-                    className={`-rotate-45 mb-1 absolute -bottom-12 group-hover:bottom-0 duration-700 `}
                     size={32}
+                    color={pathname === item.path ? "#ed2939" : "white"}
+                    className={`-rotate-45 mb-1 absolute -bottom-12 duration-700 ${
+                      pathname !== item.path ? "group-hover:bottom-0" : ""
+                    }`}
                   />
-                  <p className="lg:text-5xl text-3xl text-white font-medium leading-[1] group-hover:-bottom-12 bottom-0 left-6 duration-700 absolute z-60">
-                    НҮҮР ХУУДАС
+
+                  <p
+                    className={`lg:text-5xl text-3xl font-medium leading-[1] duration-700 absolute bottom-0 left-6 ${
+                      pathname === item.path
+                        ? "text-[#ed2939]"
+                        : "text-white group-hover:-bottom-14"
+                    }`}
+                  >
+                    {item.label}
                   </p>
 
-                  <p className=" lg:text-5xl text-3xl text-white font-medium leading-[1] absolute group-hover:bottom-0 -bottom-12 left-6  duration-700 z-60">
-                    НҮҮР ХУУДАС
+                  <p
+                    className={`lg:text-5xl text-3xl font-medium leading-[1] duration-700 absolute -bottom-14 left-6 ${
+                      pathname === item.path
+                        ? "text-[#ed2939]"
+                        : "text-white group-hover:bottom-0"
+                    }`}
+                  >
+                    {item.label}
                   </p>
                 </div>
               </div>
-              <div
-                onClick={() => handleNavigation("/about")}
-                className="flex items-end gap-1 border-[#b3b3b3] border-b-1 w-fit"
-              >
-                <div className="flex items-center gap-2 group relative overflow-hidden  lg:w-[420px] w-[270px] h-[60px] cursor-pointer">
-                  <IoIosArrowRoundForward
-                    color="white"
-                    className={`-rotate-45 mb-1 absolute bottom-0 group-hover:-bottom-12 duration-700 `}
-                    size={32}
-                  />
-                  <IoIosArrowRoundForward
-                    color="white"
-                    className={`-rotate-45 mb-1 absolute -bottom-12 group-hover:bottom-0 duration-700 `}
-                    size={32}
-                  />
-                  <p className="lg:text-5xl text-3xl text-white font-medium leading-[1] group-hover:-bottom-14 bottom-0 left-6 duration-700 absolute z-60">
-                    БИДНИЙ ТУХАЙ
-                  </p>
+            ))}
 
-                  <p className=" lg:text-5xl text-3xl text-white font-medium leading-[1] absolute group-hover:bottom-0 -bottom-14 left-6  duration-700 z-60">
-                    БИДНИЙ ТУХАЙ
-                  </p>
-                </div>
-              </div>
-              <div
-                onClick={() => handleNavigation("/services")}
-                className="flex items-end gap-1 border-[#b3b3b3] border-b-1 w-fit"
-              >
-                <div className="flex items-center gap-2 group relative overflow-hidden  lg:w-[320px] w-[210px] h-[60px] cursor-pointer">
-                  <IoIosArrowRoundForward
-                    color="white"
-                    className={`-rotate-45 mb-1 absolute bottom-0 group-hover:-bottom-12 duration-700 `}
-                    size={32}
-                  />
-                  <IoIosArrowRoundForward
-                    color="white"
-                    className={`-rotate-45 mb-1 absolute -bottom-12 group-hover:bottom-0 duration-700 `}
-                    size={32}
-                  />
-                  <p className="lg:text-5xl text-3xl text-white font-medium leading-[1] group-hover:-bottom-13 bottom-0 left-6 duration-700 absolute z-60">
-                    ҮЙЛЧИЛГЭЭ
-                  </p>
-
-                  <p className=" lg:text-5xl text-3xl text-white font-medium leading-[1] absolute group-hover:bottom-0 -bottom-13 left-6  duration-700 z-60">
-                    ҮЙЛЧИЛГЭЭ
-                  </p>
-                </div>
-              </div>
-
-              <div
-                onClick={() => handleNavigation("/contact")}
-                className="flex items-end gap-1 border-[#b3b3b3] border-b-1 w-fit"
-              >
-                <div className="flex items-center gap-2 group relative overflow-hidden  lg:w-[420px] w-[270px] h-[60px] cursor-pointer">
-                  <IoIosArrowRoundForward
-                    color="white"
-                    className={`-rotate-45 mb-1 absolute bottom-0 group-hover:-bottom-12 duration-700 `}
-                    size={32}
-                  />
-                  <IoIosArrowRoundForward
-                    color="white"
-                    className={`-rotate-45 mb-1 absolute -bottom-12 group-hover:bottom-0 duration-700 `}
-                    size={32}
-                  />
-                  <p className="lg:text-5xl text-3xl text-white font-medium leading-[1] group-hover:-bottom-13 bottom-0 left-6 duration-700 absolute z-60">
-                    ХОЛБОО БАРИХ
-                  </p>
-
-                  <p className=" lg:text-5xl text-3xl text-white font-medium leading-[1] absolute group-hover:bottom-0 -bottom-13 left-6  duration-700 z-60">
-                    ХОЛБОО БАРИХ
-                  </p>
-                </div>
-              </div>
-              <div className="flex">
+            {/* Social */}
+            <div className="flex gap-4">
+              {socialLinks.map((s) => (
                 <a
-                  href="https://www.facebook.com/greativityagency"
-                  className="flex items-center gap-2 group relative overflow-hidden w-[120px] h-[24px]  cursor-pointer"
+                  key={s.name}
+                  href={s.url}
+                  className="flex items-center gap-2 group relative overflow-hidden w-[120px] h-[24px]"
                 >
-                  <p className="lg:text-sm text-white font-medium leading-[1] group-hover:-bottom-6 bottom-0 left-0 duration-700 absolute z-60">
-                    FACEBOOK
+                  <p className="text-sm text-white font-medium group-hover:-bottom-6 bottom-0 left-0 duration-700 absolute">
+                    {s.name}
                   </p>
-
-                  <p className=" lg:text-sm text-white font-medium leading-[1] absolute group-hover:bottom-0 -bottom-6 left-0  duration-700 z-60">
-                    FACEBOOK
+                  <p className="text-sm text-white font-medium absolute group-hover:bottom-0 -bottom-6 left-0 duration-700">
+                    {s.name}
                   </p>
                 </a>
-                <a
-                  href="https://www.instagram.com/eatit_agency"
-                  className="flex items-center gap-2 group relative overflow-hidden w-[120px] h-[24px]  cursor-pointer"
-                >
-                  <p className="lg:text-sm text-white font-medium leading-[1] group-hover:-bottom-6 bottom-0 left-0 duration-700 absolute z-60">
-                    INSTAGRAM
-                  </p>
-
-                  <p className=" lg:text-sm text-white font-medium leading-[1] absolute group-hover:bottom-0 -bottom-6 left-0  duration-700 z-60">
-                    INSTAGRAM
-                  </p>
-                </a>
-              </div>
+              ))}
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </header>
   );
 };
