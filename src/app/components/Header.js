@@ -34,10 +34,10 @@ export const Header = () => {
   return (
     <div
       className={`sticky top-0   transition-transform duration-300 ${
-        showMenu ? "z-50" : "z-0"
+        showMenu ? "z-400" : "z-0"
       } ${showHeader ? "translate-y-0" : "-translate-y-full"}`}
     >
-      <div className="px-4 py-8 lg:px-24 flex justify-between items-center bg-[#222] z-50">
+      <div className="px-4 py-8 lg:px-24 flex justify-between items-center bg-[#222] z-40">
         <div className="w-8 h-8  ">
           <div
             className="grid gap-2 py-2.5 cursor-pointer"
@@ -75,7 +75,7 @@ export const Header = () => {
       <div
         className={`fixed inset-0 bg-[#222] backdrop-blur-xs duration-700 top-0 ${
           showMenu ? "h-[1000px]" : "h-[0px]"
-        } ${showMenu ? "opacity-100 z-50" : "opacity-0 -z-10"}`}
+        } ${showMenu ? "opacity-100 z-40" : "opacity-0 -z-10"}`}
       >
         <div
           className={`bg-[#222] w-[40%] max-sm:w-[100%] ${

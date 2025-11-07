@@ -44,7 +44,7 @@ export const Stories = () => {
   const videoRefs = useRef([]);
 
   useEffect(() => {
-    // Preload only side images
+    // Preload left and right images
     stories.forEach((story) => {
       new window.Image().src = story.left;
       new window.Image().src = story.right;
@@ -54,7 +54,7 @@ export const Stories = () => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          const video = entry.target;
+          const video = entry.target
           if (entry.intersectionRatio >= 0.6) {
             video.play().catch(() => {});
           } else {
@@ -67,15 +67,38 @@ export const Stories = () => {
       }
     );
 
-    videoRefs.current.forEach((video) => observer.observe(video));
+    // Observe all videos
+    videoRefs.current.forEach((video) => {
+      if (video) observer.observe(video);
+    });
 
-    // Play the first video immediately
+    // Attempt to auto-play first video immediately
     if (videoRefs.current[0]) {
       videoRefs.current[0].play().catch(() => {});
     }
 
+    // Fallback for mobile: trigger play on first user interaction
+    const handleUserInteraction = () => {
+      videoRefs.current.forEach((video) => {
+        if (video?.paused) {
+          video.play().catch(() => {});
+        }
+      });
+
+      window.removeEventListener("touchstart", handleUserInteraction);
+      window.removeEventListener("scroll", handleUserInteraction);
+    };
+
+    window.addEventListener("touchstart", handleUserInteraction, { passive: true });
+    window.addEventListener("scroll", handleUserInteraction, { passive: true });
+
+    // Cleanup
     return () => {
-      videoRefs.current.forEach((video) => observer.unobserve(video));
+      videoRefs.current.forEach((video) => {
+        if (video) observer.unobserve(video);
+      });
+      window.removeEventListener("touchstart", handleUserInteraction);
+      window.removeEventListener("scroll", handleUserInteraction);
     };
   }, []);
 
@@ -98,13 +121,13 @@ export const Stories = () => {
                 alt="left visual"
                 className="w-full h-full object-cover rounded-lg"
                 quality={85}
-                priority={idx === 0} // Only first story has priority
+                priority={idx === 0}
                 loading={idx === 0 ? "eager" : "lazy"}
               />
             </div>
 
             {/* Center Video */}
-            <div className="flex-1 w-full lg:w-1/2">
+            <div className="flex-1 w-full lg:w-1/2 min-h-[200px]">
               <video
                 ref={(el) => {
                   if (el) videoRefs.current[idx] = el;
@@ -113,12 +136,13 @@ export const Stories = () => {
                 className="w-full h-full object-cover rounded-lg border-none shadow-none"
                 muted
                 loop
+                autoPlay
                 playsInline
-                preload="none" // Avoid preloading all videos
+                preload="none"
               />
             </div>
 
-            {/* Right Image */}
+            {/* Right Image (only on large screens) */}
             <div className="flex-1 w-full lg:w-1/4 hidden lg:block">
               <Image
                 src={story.right}
