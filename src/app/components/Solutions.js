@@ -55,7 +55,7 @@ export const Solutions = () => {
     },
     {
       src: "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757387220/image_12_mhhfpl.png",
-      link: "https://www.facebook.com/hkmall.mn",
+      link: "https://www.facebook.com/hkmallmongolia",
     },
     {
       src: "https://res.cloudinary.com/dyg5xx89p/image/upload/v1757387226/image_13_scttsq.png",
