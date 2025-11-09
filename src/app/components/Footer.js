@@ -22,6 +22,7 @@ export const Footer = () => {
               width={140}
               height={20}
               className="object-cover "
+              style={{ width: "auto", height: "auto" }}
             />
           </div>
           <p className="text-[#b2b2b2]">Create. Not just ads. Impact.</p>
@@ -81,6 +82,7 @@ export const Footer = () => {
                 width={140}
                 height={20}
                 className="object-cover "
+                style={{ width: "auto", height: "auto" }}
               />
             </div>
             <p className="text-[#b2b2b2]">Create. Not just ads. Impact.</p>

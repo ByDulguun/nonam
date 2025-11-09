@@ -3,9 +3,12 @@ import Image from "next/image";
 import RotatingText from "./RotateText";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import { useRouter } from "next/navigation";
+import { useEffect, useMemo, useState } from "react";
 
 export const HomePage = () => {
   const router = useRouter();
+
+  const FRONT_INDEX = 2;
 
   const mockImages = [
     {
@@ -50,21 +53,51 @@ export const HomePage = () => {
     },
   ];
 
+  const imageSizes =
+    "(max-width: 768px) 250px, (max-width: 1024px) 400px, 500px";
+
+  const [animReady, setAnimReady] = useState(false);
+
+  const frontSrc = useMemo(() => mockImages[FRONT_INDEX]?.src, [FRONT_INDEX]);
+
+  useEffect(() => {
+    if (!frontSrc) {
+      setAnimReady(true);
+      return;
+    }
+    const img = new window.Image();
+    img.src = frontSrc;
+    if (img.complete) {
+      setAnimReady(true);
+    } else {
+      img.onload = () => setAnimReady(true);
+      img.onerror = () => setAnimReady(true);
+    }
+  }, [frontSrc]);
+
   return (
     <div className="lg:h-[100%] h-full overflow-hidden grid gap-20 lg:flex lg:flex-row-reverse">
       <div className="h-fit lg:mt-10 mt-0">
         <div
-          className="relative w-[250px] h-[250px] rotating-animation lg:w-[500px] lg:h-[500px] rotate-16 left-32 -top-10 lg:-left-12 lg:-top-20"
-          style={{ transformStyle: "preserve-3d" }}
+          className={`relative w-[250px] h-[250px] lg:w-[500px] lg:h-[500px] rotate-16 left-32 -top-10 lg:-left-12 lg:-top-20 ${
+            animReady ? "rotating-animation" : ""
+          }`}
+          style={{
+            transformStyle: "preserve-3d",
+            willChange: animReady ? "transform" : "auto",
+          }}
         >
           {mockImages.map((item, i) => (
             <span
               key={item.id}
               className="absolute"
               style={{
-                transform: `rotateY(${i * 45}deg) translateY(200px)`,
+                transform: `rotateY(${
+                  i * 45
+                }deg) translateY(200px) translateZ(0)`,
                 transformOrigin: "center",
                 transformStyle: "preserve-3d",
+                willChange: animReady ? "transform" : "auto",
               }}
             >
               <div className="relative w-[250px] h-[250px] lg:w-[400px] lg:h-[400px] translate-x-[120px] lg:translate-x-[200px]">
@@ -72,9 +105,11 @@ export const HomePage = () => {
                   src={item.src}
                   alt={item.alt}
                   fill
-                  className="object-contain"
-                  priority={i === 0}
-                  loading={i === 0 ? "eager" : "lazy"}
+                  sizes={imageSizes}
+                  className="object-contain will-change-transform"
+                  {...(i === FRONT_INDEX
+                    ? { priority: true, decoding: "async" }
+                    : { loading: "lazy", decoding: "async" })}
                 />
               </div>
             </span>
@@ -114,7 +149,9 @@ export const HomePage = () => {
             width={270}
             height={20}
             className="object-cover"
+            style={{ width: "auto", height: "auto" }}
             priority
+            decoding="async"
           />
 
           <h1 className="text-[#ed2939] w-[100%] lg:w-[400px] font-bold">

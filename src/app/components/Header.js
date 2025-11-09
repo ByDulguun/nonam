@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from "react";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import { usePathname, useRouter } from "next/navigation";
 
-// Menu items (dynamic)
 const menuItems = [
   { label: "НҮҮР ХУУДАС", path: "/" },
   { label: "БИДНИЙ ТУХАЙ", path: "/about" },
@@ -12,7 +11,6 @@ const menuItems = [
   { label: "ХОЛБОО БАРИХ", path: "/contact" },
 ];
 
-// Social items (dynamic)
 const socialLinks = [
   { name: "FACEBOOK", url: "https://www.facebook.com/greativityagency" },
   { name: "INSTAGRAM", url: "https://www.instagram.com/eatit_agency" },
@@ -58,14 +56,16 @@ export const Header = () => {
             alt="white logo"
             width={140}
             height={20}
-            className="absolute bottom-0 left-0 group-hover:-bottom-7 duration-700"
+            style={{ width: "auto", height: "auto" }}
+            className="absolute -bottom-1 left-0 group-hover:-bottom-8 duration-700"
           />
           <Image
             src="/logoRed.png"
             alt="red logo"
             width={140}
             height={20}
-            className="absolute -bottom-7 left-0 group-hover:bottom-0 duration-700"
+            style={{ width: "auto", height: "auto" }}
+            className="absolute -bottom-8 left-0 group-hover:-bottom-1 duration-700"
           />
         </div>
       </div>

@@ -38,7 +38,7 @@ const Page = () => {
           <p className="text-[#b2b2b2]">Adress:</p>
           <p className="text-[#b2b2b2]">UB TOWER PLUS OFFICE BUILDING</p>
           <p className="text-[#b2b2b2]">
-            #608 6th floor Manlaibaatar street Ulaanbaatar Mongolia
+            6th floor Manlaibaatar street Ulaanbaatar Mongolia
           </p>
           <a
             href="https://maps.app.goo.gl/XAtYmaNTTGvTUX5z5"
