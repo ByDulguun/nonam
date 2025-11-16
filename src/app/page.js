@@ -5,11 +5,11 @@ import { Stories } from "./components/Stories";
 
 export default function Home() {
   return (
-    <>
+    <div className="overflow-hidden">
       <HomePage />
       <Solutions />
       <Onon />
       <Stories />
-    </>
+    </div>
   );
 }

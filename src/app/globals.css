@@ -16,9 +16,21 @@ body {
   background-color: #222;
   font-family: "Onest", sans-serif;
 }
-.rotating-animation {
-  animation: animate 20s linear infinite;
+@keyframes rotateYLoop {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(360deg);
+  }
 }
+
+.rotating-animation {
+  animation: rotateYLoop 18s linear infinite;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
 @keyframes animate {
   0% {
     transform: perspective(1000px) rotateY(0deg);

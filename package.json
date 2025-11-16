@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@motionone/utils": "^10.18.0",
     "@react-spring/web": "^9.7.5",
     "framer-motion": "^12.4.7",
     "gsap": "^3.12.7",

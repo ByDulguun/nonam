@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import { usePathname, useRouter } from "next/navigation";
 
@@ -28,19 +28,15 @@ export const Header = () => {
   };
 
   return (
-    <header
-      className={`sticky top-0 transition-transform duration-300 ${
-        showMenu ? "z-50" : "z-20"
-      }`}
-    >
+    <header className="fixed w-full top-0 z-30 transition-transform duration-300">
       {/* Top bar */}
-      <div className="px-4 py-8 lg:px-24 flex justify-between items-center bg-[#222]">
+      <div className="px-4 py-8 lg:px-24 flex justify-between items-center bg-[#222] z-40">
         {/* Hamburger */}
-        <div className="w-8 h-8">
-          <div
-            className="grid gap-2 py-2.5 cursor-pointer "
-            onClick={() => setShowMenu((p) => !p)}
-          >
+        <div
+          className="w-8 h-8 cursor-pointer"
+          onClick={() => setShowMenu((p) => !p)}
+        >
+          <div className="grid gap-2 py-2.5">
             <div className="w-full h-[1px] bg-white"></div>
             <div className="w-[80%] h-[1px] bg-white"></div>
           </div>
@@ -56,7 +52,6 @@ export const Header = () => {
             alt="white logo"
             width={140}
             height={20}
-            style={{ width: "auto", height: "auto" }}
             className="absolute -bottom-1 left-0 group-hover:-bottom-8 duration-700"
           />
           <Image
@@ -64,7 +59,6 @@ export const Header = () => {
             alt="red logo"
             width={140}
             height={20}
-            style={{ width: "auto", height: "auto" }}
             className="absolute -bottom-8 left-0 group-hover:-bottom-1 duration-700"
           />
         </div>
@@ -72,19 +66,22 @@ export const Header = () => {
 
       {/* Menu Overlay */}
       <div
-        className={`fixed inset-0 bg-[#222] backdrop-blur-xs transition-all duration-700 min-h-screen h-screen ${
-          showMenu
-            ? "opacity-100 translate-y-0 z-40"
-            : "opacity-0 -translate-y-full -z-10"
-        }`}
+        className={`
+          fixed inset-0 bg-[#222] transition-all duration-700 z-50
+          ${
+            showMenu
+              ? "opacity-100 translate-y-0 pointer-events-auto"
+              : "opacity-0 -translate-y-full pointer-events-none"
+          }
+        `}
       >
-        <div className="lg:px-24 px-4 py-8 w-[40%] max-sm:w-[100%]">
+        <div className="lg:px-24 px-4 py-8 w-[40%] max-sm:w-full h-screen">
           {/* Close button */}
-          <div className="w-8 h-8 cursor-pointer">
-            <div
-              className="grid gap-2 py-2.5 relative "
-              onClick={() => setShowMenu(false)}
-            >
+          <div
+            className="w-8 h-8 cursor-pointer"
+            onClick={() => setShowMenu(false)}
+          >
+            <div className="grid gap-2 py-2.5 relative">
               <div className="w-full h-[1px] bg-white rotate-45 translate-y-1.5"></div>
               <div className="w-[80%] h-[1px] bg-white -rotate-45 -translate-y-1.5"></div>
             </div>
