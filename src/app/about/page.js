@@ -153,7 +153,7 @@ const Page = () => {
       </div>
 
       {/* Stats */}
-      <div className="flex flex-col gap-8 lg:flex-row lg:gap-4 items-start justify-center lg:justify-around pb-12">
+      <div className="flex flex-col gap-8 lg:flex-row lg:gap-4 items-center   lg:justify-around pb-12">
         <div className="grid gap-3">
           <div className="flex gap-2 items-center justify-center">
             <p className="text-[#b2b2b2] text-xl lg:text-9xl">+</p>
