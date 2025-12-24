@@ -30,7 +30,7 @@ export const Header = () => {
   return (
     <header className="fixed w-full top-0 z-30 transition-transform duration-300">
       {/* Top bar */}
-      <div className="px-4 py-8 lg:px-24 flex justify-between items-center bg-[#222] z-40">
+      <div className="px-4 py-4 lg:px-24 flex justify-between items-center bg-[#222] z-40">
         {/* Hamburger */}
         <div
           className="w-8 h-8 cursor-pointer"
@@ -45,7 +45,7 @@ export const Header = () => {
         {/* Logo */}
         <div
           onClick={() => router.push("/")}
-          className="flex items-center gap-2 group relative overflow-hidden w-[170px] h-[26px] cursor-pointer"
+          className="flex items-center gap-2 group relative overflow-hidden w-[170px] h-[26px] cursor-pointer left-6"
         >
           <Image
             src="/logoWhite.png"
@@ -70,8 +70,8 @@ export const Header = () => {
           fixed inset-0 bg-[#222] transition-all duration-700 z-50
           ${
             showMenu
-              ? "opacity-100 translate-y-0 pointer-events-auto"
-              : "opacity-0 -translate-y-full pointer-events-none"
+              ? "translate-y-0 pointer-events-auto"
+              : " -translate-y-full pointer-events-none"
           }
         `}
       >
@@ -82,8 +82,12 @@ export const Header = () => {
             onClick={() => setShowMenu(false)}
           >
             <div className="grid gap-2 py-2.5 relative">
-              <div className="w-full h-[1px] bg-white rotate-45 translate-y-1.5"></div>
-              <div className="w-[80%] h-[1px] bg-white -rotate-45 -translate-y-1.5"></div>
+              <div
+                className={`w-full h-[1px] bg-white rotate-45  translate-y-1.5 `}
+              ></div>
+              <div
+                className={`w-[80%] h-[1px] bg-white -rotate-45  -translate-y-1.5 `}
+              ></div>
             </div>
           </div>
 
@@ -101,18 +105,18 @@ export const Header = () => {
               >
                 <div className="flex items-center gap-2 group relative overflow-hidden lg:w-[420px] w-[270px] h-[60px]">
                   <IoIosArrowRoundForward
-                    size={32}
+                    size={48}
                     color={pathname === item.path ? "#ed2939" : "white"}
-                    className={`-rotate-45 mb-1 absolute bottom-0 duration-700 ${
+                    className={`-rotate-45 mb-1 absolute -bottom-4 duration-700 -left-3 ${
                       pathname !== item.path ? "group-hover:-bottom-12" : ""
                     }`}
                   />
 
                   <IoIosArrowRoundForward
-                    size={32}
+                    size={48}
                     color={pathname === item.path ? "#ed2939" : "white"}
-                    className={`-rotate-45 mb-1 absolute -bottom-12 duration-700 ${
-                      pathname !== item.path ? "group-hover:bottom-0" : ""
+                    className={`-rotate-45 mb-1 absolute -bottom-16 duration-700 -left-3 ${
+                      pathname !== item.path ? "group-hover:-bottom-4" : ""
                     }`}
                   />
 
